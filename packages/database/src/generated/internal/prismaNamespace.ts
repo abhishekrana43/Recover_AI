@@ -16,10 +16,10 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "../models.ts"
-import { type PrismaClient } from "./class.ts"
+import type * as Prisma from "../models.js"
+import { type PrismaClient } from "./class.js"
 
-export type * from '../models.ts'
+export type * from '../models.js'
 
 export type DMMF = typeof runtime.DMMF
 
@@ -1264,7 +1264,10 @@ export const RecoveryCaseScalarFieldEnum = {
   status: 'status',
   amountAtRisk: 'amountAtRisk',
   amountRecovered: 'amountRecovered',
+  failureReason: 'failureReason',
+  closureReason: 'closureReason',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   resolvedAt: 'resolvedAt'
 } as const
 
@@ -1275,10 +1278,25 @@ export const AgentExecutionScalarFieldEnum = {
   id: 'id',
   recoveryCaseId: 'recoveryCaseId',
   model: 'model',
+  modelVersion: 'modelVersion',
+  agentType: 'agentType',
+  agentName: 'agentName',
+  status: 'status',
   recommendedAction: 'recommendedAction',
   reasoning: 'reasoning',
   confidence: 'confidence',
-  createdAt: 'createdAt'
+  input: 'input',
+  recommendation: 'recommendation',
+  toolCalls: 'toolCalls',
+  policyResult: 'policyResult',
+  rawOutput: 'rawOutput',
+  tokenUsage: 'tokenUsage',
+  latencyMs: 'latencyMs',
+  error: 'error',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type AgentExecutionScalarFieldEnum = (typeof AgentExecutionScalarFieldEnum)[keyof typeof AgentExecutionScalarFieldEnum]
@@ -1289,9 +1307,22 @@ export const RecoveryActionScalarFieldEnum = {
   recoveryCaseId: 'recoveryCaseId',
   type: 'type',
   status: 'status',
-  executedAt: 'executedAt',
+  payload: 'payload',
   result: 'result',
-  createdAt: 'createdAt'
+  error: 'error',
+  retryCount: 'retryCount',
+  externalProviderId: 'externalProviderId',
+  idempotencyKey: 'idempotencyKey',
+  scheduledFor: 'scheduledFor',
+  approvalRequired: 'approvalRequired',
+  approvedAt: 'approvedAt',
+  approvedBy: 'approvedBy',
+  rejectedAt: 'rejectedAt',
+  rejectedBy: 'rejectedBy',
+  approvalReason: 'approvalReason',
+  executedAt: 'executedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type RecoveryActionScalarFieldEnum = (typeof RecoveryActionScalarFieldEnum)[keyof typeof RecoveryActionScalarFieldEnum]
@@ -1315,6 +1346,11 @@ export const AuditLogScalarFieldEnum = {
   entityId: 'entityId',
   action: 'action',
   metadata: 'metadata',
+  actorType: 'actorType',
+  actorId: 'actorId',
+  source: 'source',
+  previousState: 'previousState',
+  newState: 'newState',
   createdAt: 'createdAt'
 } as const
 
@@ -1325,7 +1361,14 @@ export const WebhookEventScalarFieldEnum = {
   id: 'id',
   eventId: 'eventId',
   eventType: 'eventType',
+  provider: 'provider',
+  payload: 'payload',
   processed: 'processed',
+  status: 'status',
+  processingAttempts: 'processingAttempts',
+  lastError: 'lastError',
+  nextRetryAt: 'nextRetryAt',
+  lockedAt: 'lockedAt',
   receivedAt: 'receivedAt',
   processedAt: 'processedAt'
 } as const
@@ -1451,6 +1494,20 @@ export type ListEnumRecoveryStatusFieldRefInput<$PrismaModel> = FieldRefInputTyp
 
 
 /**
+ * Reference to a field of type 'AgentExecutionStatus'
+ */
+export type EnumAgentExecutionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgentExecutionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AgentExecutionStatus[]'
+ */
+export type ListEnumAgentExecutionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgentExecutionStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'RecoveryActionType'
  */
 export type EnumRecoveryActionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RecoveryActionType'>
@@ -1479,6 +1536,20 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
 
 
 /**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
  * Reference to a field of type 'ActionStatus'
  */
 export type EnumActionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActionStatus'>
@@ -1493,16 +1564,9 @@ export type ListEnumActionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
 
 
 /**
- * Reference to a field of type 'Json'
+ * Reference to a field of type 'Boolean'
  */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-/**
- * Reference to a field of type 'QueryMode'
- */
-export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1521,9 +1585,30 @@ export type ListEnumPolicyDecisionTypeFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
- * Reference to a field of type 'Boolean'
+ * Reference to a field of type 'WebhookProvider'
  */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+export type EnumWebhookProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WebhookProvider'>
+    
+
+
+/**
+ * Reference to a field of type 'WebhookProvider[]'
+ */
+export type ListEnumWebhookProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WebhookProvider[]'>
+    
+
+
+/**
+ * Reference to a field of type 'WebhookProcessingStatus'
+ */
+export type EnumWebhookProcessingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WebhookProcessingStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'WebhookProcessingStatus[]'
+ */
+export type ListEnumWebhookProcessingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WebhookProcessingStatus[]'>
     
 
 /**

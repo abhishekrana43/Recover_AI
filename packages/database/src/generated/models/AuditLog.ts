@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.ts"
-import type * as Prisma from "../internal/prismaNamespace.ts"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model AuditLog
@@ -30,6 +30,9 @@ export type AuditLogMinAggregateOutputType = {
   entityType: string | null
   entityId: string | null
   action: string | null
+  actorType: string | null
+  actorId: string | null
+  source: string | null
   createdAt: Date | null
 }
 
@@ -39,6 +42,9 @@ export type AuditLogMaxAggregateOutputType = {
   entityType: string | null
   entityId: string | null
   action: string | null
+  actorType: string | null
+  actorId: string | null
+  source: string | null
   createdAt: Date | null
 }
 
@@ -49,6 +55,11 @@ export type AuditLogCountAggregateOutputType = {
   entityId: number
   action: number
   metadata: number
+  actorType: number
+  actorId: number
+  source: number
+  previousState: number
+  newState: number
   createdAt: number
   _all: number
 }
@@ -60,6 +71,9 @@ export type AuditLogMinAggregateInputType = {
   entityType?: true
   entityId?: true
   action?: true
+  actorType?: true
+  actorId?: true
+  source?: true
   createdAt?: true
 }
 
@@ -69,6 +83,9 @@ export type AuditLogMaxAggregateInputType = {
   entityType?: true
   entityId?: true
   action?: true
+  actorType?: true
+  actorId?: true
+  source?: true
   createdAt?: true
 }
 
@@ -79,6 +96,11 @@ export type AuditLogCountAggregateInputType = {
   entityId?: true
   action?: true
   metadata?: true
+  actorType?: true
+  actorId?: true
+  source?: true
+  previousState?: true
+  newState?: true
   createdAt?: true
   _all?: true
 }
@@ -162,6 +184,11 @@ export type AuditLogGroupByOutputType = {
   entityId: string
   action: string
   metadata: runtime.JsonValue | null
+  actorType: string | null
+  actorId: string | null
+  source: string | null
+  previousState: runtime.JsonValue | null
+  newState: runtime.JsonValue | null
   createdAt: Date
   _count: AuditLogCountAggregateOutputType | null
   _min: AuditLogMinAggregateOutputType | null
@@ -193,6 +220,11 @@ export type AuditLogWhereInput = {
   entityId?: Prisma.StringFilter<"AuditLog"> | string
   action?: Prisma.StringFilter<"AuditLog"> | string
   metadata?: Prisma.JsonNullableFilter<"AuditLog">
+  actorType?: Prisma.StringNullableFilter<"AuditLog"> | string | null
+  actorId?: Prisma.StringNullableFilter<"AuditLog"> | string | null
+  source?: Prisma.StringNullableFilter<"AuditLog"> | string | null
+  previousState?: Prisma.JsonNullableFilter<"AuditLog">
+  newState?: Prisma.JsonNullableFilter<"AuditLog">
   createdAt?: Prisma.DateTimeFilter<"AuditLog"> | Date | string
 }
 
@@ -203,6 +235,11 @@ export type AuditLogOrderByWithRelationInput = {
   entityId?: Prisma.SortOrder
   action?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
+  actorType?: Prisma.SortOrderInput | Prisma.SortOrder
+  actorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  source?: Prisma.SortOrderInput | Prisma.SortOrder
+  previousState?: Prisma.SortOrderInput | Prisma.SortOrder
+  newState?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -216,6 +253,11 @@ export type AuditLogWhereUniqueInput = Prisma.AtLeast<{
   entityId?: Prisma.StringFilter<"AuditLog"> | string
   action?: Prisma.StringFilter<"AuditLog"> | string
   metadata?: Prisma.JsonNullableFilter<"AuditLog">
+  actorType?: Prisma.StringNullableFilter<"AuditLog"> | string | null
+  actorId?: Prisma.StringNullableFilter<"AuditLog"> | string | null
+  source?: Prisma.StringNullableFilter<"AuditLog"> | string | null
+  previousState?: Prisma.JsonNullableFilter<"AuditLog">
+  newState?: Prisma.JsonNullableFilter<"AuditLog">
   createdAt?: Prisma.DateTimeFilter<"AuditLog"> | Date | string
 }, "id">
 
@@ -226,6 +268,11 @@ export type AuditLogOrderByWithAggregationInput = {
   entityId?: Prisma.SortOrder
   action?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
+  actorType?: Prisma.SortOrderInput | Prisma.SortOrder
+  actorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  source?: Prisma.SortOrderInput | Prisma.SortOrder
+  previousState?: Prisma.SortOrderInput | Prisma.SortOrder
+  newState?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.AuditLogCountOrderByAggregateInput
   _max?: Prisma.AuditLogMaxOrderByAggregateInput
@@ -242,6 +289,11 @@ export type AuditLogScalarWhereWithAggregatesInput = {
   entityId?: Prisma.StringWithAggregatesFilter<"AuditLog"> | string
   action?: Prisma.StringWithAggregatesFilter<"AuditLog"> | string
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"AuditLog">
+  actorType?: Prisma.StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+  actorId?: Prisma.StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+  source?: Prisma.StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+  previousState?: Prisma.JsonNullableWithAggregatesFilter<"AuditLog">
+  newState?: Prisma.JsonNullableWithAggregatesFilter<"AuditLog">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AuditLog"> | Date | string
 }
 
@@ -252,6 +304,11 @@ export type AuditLogCreateInput = {
   entityId: string
   action: string
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  actorType?: string | null
+  actorId?: string | null
+  source?: string | null
+  previousState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  newState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
 
@@ -262,6 +319,11 @@ export type AuditLogUncheckedCreateInput = {
   entityId: string
   action: string
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  actorType?: string | null
+  actorId?: string | null
+  source?: string | null
+  previousState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  newState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
 
@@ -272,6 +334,11 @@ export type AuditLogUpdateInput = {
   entityId?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  actorType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  actorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  previousState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  newState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -282,6 +349,11 @@ export type AuditLogUncheckedUpdateInput = {
   entityId?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  actorType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  actorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  previousState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  newState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -292,6 +364,11 @@ export type AuditLogCreateManyInput = {
   entityId: string
   action: string
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  actorType?: string | null
+  actorId?: string | null
+  source?: string | null
+  previousState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  newState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
 
@@ -302,6 +379,11 @@ export type AuditLogUpdateManyMutationInput = {
   entityId?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  actorType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  actorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  previousState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  newState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -312,6 +394,11 @@ export type AuditLogUncheckedUpdateManyInput = {
   entityId?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  actorType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  actorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  previousState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  newState?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -322,6 +409,11 @@ export type AuditLogCountOrderByAggregateInput = {
   entityId?: Prisma.SortOrder
   action?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
+  actorType?: Prisma.SortOrder
+  actorId?: Prisma.SortOrder
+  source?: Prisma.SortOrder
+  previousState?: Prisma.SortOrder
+  newState?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -331,6 +423,9 @@ export type AuditLogMaxOrderByAggregateInput = {
   entityType?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   action?: Prisma.SortOrder
+  actorType?: Prisma.SortOrder
+  actorId?: Prisma.SortOrder
+  source?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -340,6 +435,9 @@ export type AuditLogMinOrderByAggregateInput = {
   entityType?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   action?: Prisma.SortOrder
+  actorType?: Prisma.SortOrder
+  actorId?: Prisma.SortOrder
+  source?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -352,6 +450,11 @@ export type AuditLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   entityId?: boolean
   action?: boolean
   metadata?: boolean
+  actorType?: boolean
+  actorId?: boolean
+  source?: boolean
+  previousState?: boolean
+  newState?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["auditLog"]>
 
@@ -362,6 +465,11 @@ export type AuditLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   entityId?: boolean
   action?: boolean
   metadata?: boolean
+  actorType?: boolean
+  actorId?: boolean
+  source?: boolean
+  previousState?: boolean
+  newState?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["auditLog"]>
 
@@ -372,6 +480,11 @@ export type AuditLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   entityId?: boolean
   action?: boolean
   metadata?: boolean
+  actorType?: boolean
+  actorId?: boolean
+  source?: boolean
+  previousState?: boolean
+  newState?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["auditLog"]>
 
@@ -382,10 +495,15 @@ export type AuditLogSelectScalar = {
   entityId?: boolean
   action?: boolean
   metadata?: boolean
+  actorType?: boolean
+  actorId?: boolean
+  source?: boolean
+  previousState?: boolean
+  newState?: boolean
   createdAt?: boolean
 }
 
-export type AuditLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "merchantId" | "entityType" | "entityId" | "action" | "metadata" | "createdAt", ExtArgs["result"]["auditLog"]>
+export type AuditLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "merchantId" | "entityType" | "entityId" | "action" | "metadata" | "actorType" | "actorId" | "source" | "previousState" | "newState" | "createdAt", ExtArgs["result"]["auditLog"]>
 
 export type $AuditLogPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AuditLog"
@@ -397,6 +515,11 @@ export type $AuditLogPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     entityId: string
     action: string
     metadata: runtime.JsonValue | null
+    actorType: string | null
+    actorId: string | null
+    source: string | null
+    previousState: runtime.JsonValue | null
+    newState: runtime.JsonValue | null
     createdAt: Date
   }, ExtArgs["result"]["auditLog"]>
   composites: {}
@@ -827,6 +950,11 @@ export interface AuditLogFieldRefs {
   readonly entityId: Prisma.FieldRef<"AuditLog", 'String'>
   readonly action: Prisma.FieldRef<"AuditLog", 'String'>
   readonly metadata: Prisma.FieldRef<"AuditLog", 'Json'>
+  readonly actorType: Prisma.FieldRef<"AuditLog", 'String'>
+  readonly actorId: Prisma.FieldRef<"AuditLog", 'String'>
+  readonly source: Prisma.FieldRef<"AuditLog", 'String'>
+  readonly previousState: Prisma.FieldRef<"AuditLog", 'Json'>
+  readonly newState: Prisma.FieldRef<"AuditLog", 'Json'>
   readonly createdAt: Prisma.FieldRef<"AuditLog", 'DateTime'>
 }
     

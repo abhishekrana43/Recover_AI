@@ -61,3 +61,32 @@ export const PolicyDecisionType = {
 } as const
 
 export type PolicyDecisionType = (typeof PolicyDecisionType)[keyof typeof PolicyDecisionType]
+
+
+export const WebhookProvider = {
+  RAZORPAY: 'RAZORPAY'
+} as const
+
+export type WebhookProvider = (typeof WebhookProvider)[keyof typeof WebhookProvider]
+
+
+export const WebhookProcessingStatus = {
+  RECEIVED: 'RECEIVED',
+  PROCESSING: 'PROCESSING',
+  PROCESSED: 'PROCESSED',
+  FAILED: 'FAILED',
+  RETRY_PENDING: 'RETRY_PENDING',
+  IGNORED: 'IGNORED'
+} as const
+
+export type WebhookProcessingStatus = (typeof WebhookProcessingStatus)[keyof typeof WebhookProcessingStatus]
+
+
+export const AgentExecutionStatus = {
+  PENDING: 'PENDING',
+  RUNNING: 'RUNNING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+} as const
+
+export type AgentExecutionStatus = (typeof AgentExecutionStatus)[keyof typeof AgentExecutionStatus]

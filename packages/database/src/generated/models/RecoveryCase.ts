@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.ts"
-import type * as Prisma from "../internal/prismaNamespace.ts"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model RecoveryCase
@@ -43,7 +43,10 @@ export type RecoveryCaseMinAggregateOutputType = {
   status: $Enums.RecoveryStatus | null
   amountAtRisk: number | null
   amountRecovered: number | null
+  failureReason: string | null
+  closureReason: string | null
   createdAt: Date | null
+  updatedAt: Date | null
   resolvedAt: Date | null
 }
 
@@ -54,7 +57,10 @@ export type RecoveryCaseMaxAggregateOutputType = {
   status: $Enums.RecoveryStatus | null
   amountAtRisk: number | null
   amountRecovered: number | null
+  failureReason: string | null
+  closureReason: string | null
   createdAt: Date | null
+  updatedAt: Date | null
   resolvedAt: Date | null
 }
 
@@ -65,7 +71,10 @@ export type RecoveryCaseCountAggregateOutputType = {
   status: number
   amountAtRisk: number
   amountRecovered: number
+  failureReason: number
+  closureReason: number
   createdAt: number
+  updatedAt: number
   resolvedAt: number
   _all: number
 }
@@ -88,7 +97,10 @@ export type RecoveryCaseMinAggregateInputType = {
   status?: true
   amountAtRisk?: true
   amountRecovered?: true
+  failureReason?: true
+  closureReason?: true
   createdAt?: true
+  updatedAt?: true
   resolvedAt?: true
 }
 
@@ -99,7 +111,10 @@ export type RecoveryCaseMaxAggregateInputType = {
   status?: true
   amountAtRisk?: true
   amountRecovered?: true
+  failureReason?: true
+  closureReason?: true
   createdAt?: true
+  updatedAt?: true
   resolvedAt?: true
 }
 
@@ -110,7 +125,10 @@ export type RecoveryCaseCountAggregateInputType = {
   status?: true
   amountAtRisk?: true
   amountRecovered?: true
+  failureReason?: true
+  closureReason?: true
   createdAt?: true
+  updatedAt?: true
   resolvedAt?: true
   _all?: true
 }
@@ -208,7 +226,10 @@ export type RecoveryCaseGroupByOutputType = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered: number
+  failureReason: string | null
+  closureReason: string | null
   createdAt: Date
+  updatedAt: Date
   resolvedAt: Date | null
   _count: RecoveryCaseCountAggregateOutputType | null
   _avg: RecoveryCaseAvgAggregateOutputType | null
@@ -242,12 +263,15 @@ export type RecoveryCaseWhereInput = {
   status?: Prisma.EnumRecoveryStatusFilter<"RecoveryCase"> | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFilter<"RecoveryCase"> | number
   amountRecovered?: Prisma.IntFilter<"RecoveryCase"> | number
+  failureReason?: Prisma.StringNullableFilter<"RecoveryCase"> | string | null
+  closureReason?: Prisma.StringNullableFilter<"RecoveryCase"> | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryCase"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"RecoveryCase"> | Date | string
   resolvedAt?: Prisma.DateTimeNullableFilter<"RecoveryCase"> | Date | string | null
-  merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
-  payment?: Prisma.XOR<Prisma.PaymentScalarRelationFilter, Prisma.PaymentWhereInput>
   agentExecutions?: Prisma.AgentExecutionListRelationFilter
   actions?: Prisma.RecoveryActionListRelationFilter
+  merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
+  payment?: Prisma.XOR<Prisma.PaymentScalarRelationFilter, Prisma.PaymentWhereInput>
 }
 
 export type RecoveryCaseOrderByWithRelationInput = {
@@ -257,12 +281,15 @@ export type RecoveryCaseOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   amountAtRisk?: Prisma.SortOrder
   amountRecovered?: Prisma.SortOrder
+  failureReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  closureReason?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   resolvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  merchant?: Prisma.MerchantOrderByWithRelationInput
-  payment?: Prisma.PaymentOrderByWithRelationInput
   agentExecutions?: Prisma.AgentExecutionOrderByRelationAggregateInput
   actions?: Prisma.RecoveryActionOrderByRelationAggregateInput
+  merchant?: Prisma.MerchantOrderByWithRelationInput
+  payment?: Prisma.PaymentOrderByWithRelationInput
 }
 
 export type RecoveryCaseWhereUniqueInput = Prisma.AtLeast<{
@@ -275,12 +302,15 @@ export type RecoveryCaseWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumRecoveryStatusFilter<"RecoveryCase"> | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFilter<"RecoveryCase"> | number
   amountRecovered?: Prisma.IntFilter<"RecoveryCase"> | number
+  failureReason?: Prisma.StringNullableFilter<"RecoveryCase"> | string | null
+  closureReason?: Prisma.StringNullableFilter<"RecoveryCase"> | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryCase"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"RecoveryCase"> | Date | string
   resolvedAt?: Prisma.DateTimeNullableFilter<"RecoveryCase"> | Date | string | null
-  merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
-  payment?: Prisma.XOR<Prisma.PaymentScalarRelationFilter, Prisma.PaymentWhereInput>
   agentExecutions?: Prisma.AgentExecutionListRelationFilter
   actions?: Prisma.RecoveryActionListRelationFilter
+  merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
+  payment?: Prisma.XOR<Prisma.PaymentScalarRelationFilter, Prisma.PaymentWhereInput>
 }, "id">
 
 export type RecoveryCaseOrderByWithAggregationInput = {
@@ -290,7 +320,10 @@ export type RecoveryCaseOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   amountAtRisk?: Prisma.SortOrder
   amountRecovered?: Prisma.SortOrder
+  failureReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  closureReason?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   resolvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RecoveryCaseCountOrderByAggregateInput
   _avg?: Prisma.RecoveryCaseAvgOrderByAggregateInput
@@ -309,7 +342,10 @@ export type RecoveryCaseScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumRecoveryStatusWithAggregatesFilter<"RecoveryCase"> | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntWithAggregatesFilter<"RecoveryCase"> | number
   amountRecovered?: Prisma.IntWithAggregatesFilter<"RecoveryCase"> | number
+  failureReason?: Prisma.StringNullableWithAggregatesFilter<"RecoveryCase"> | string | null
+  closureReason?: Prisma.StringNullableWithAggregatesFilter<"RecoveryCase"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RecoveryCase"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RecoveryCase"> | Date | string
   resolvedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"RecoveryCase"> | Date | string | null
 }
 
@@ -318,12 +354,15 @@ export type RecoveryCaseCreateInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
-  merchant: Prisma.MerchantCreateNestedOneWithoutRecoveryCasesInput
-  payment: Prisma.PaymentCreateNestedOneWithoutRecoveryCasesInput
   agentExecutions?: Prisma.AgentExecutionCreateNestedManyWithoutRecoveryCaseInput
   actions?: Prisma.RecoveryActionCreateNestedManyWithoutRecoveryCaseInput
+  merchant: Prisma.MerchantCreateNestedOneWithoutRecoveryCasesInput
+  payment: Prisma.PaymentCreateNestedOneWithoutRecoveryCasesInput
 }
 
 export type RecoveryCaseUncheckedCreateInput = {
@@ -333,7 +372,10 @@ export type RecoveryCaseUncheckedCreateInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
   agentExecutions?: Prisma.AgentExecutionUncheckedCreateNestedManyWithoutRecoveryCaseInput
   actions?: Prisma.RecoveryActionUncheckedCreateNestedManyWithoutRecoveryCaseInput
@@ -344,12 +386,15 @@ export type RecoveryCaseUpdateInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  merchant?: Prisma.MerchantUpdateOneRequiredWithoutRecoveryCasesNestedInput
-  payment?: Prisma.PaymentUpdateOneRequiredWithoutRecoveryCasesNestedInput
   agentExecutions?: Prisma.AgentExecutionUpdateManyWithoutRecoveryCaseNestedInput
   actions?: Prisma.RecoveryActionUpdateManyWithoutRecoveryCaseNestedInput
+  merchant?: Prisma.MerchantUpdateOneRequiredWithoutRecoveryCasesNestedInput
+  payment?: Prisma.PaymentUpdateOneRequiredWithoutRecoveryCasesNestedInput
 }
 
 export type RecoveryCaseUncheckedUpdateInput = {
@@ -359,7 +404,10 @@ export type RecoveryCaseUncheckedUpdateInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   agentExecutions?: Prisma.AgentExecutionUncheckedUpdateManyWithoutRecoveryCaseNestedInput
   actions?: Prisma.RecoveryActionUncheckedUpdateManyWithoutRecoveryCaseNestedInput
@@ -372,7 +420,10 @@ export type RecoveryCaseCreateManyInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
 }
 
@@ -381,7 +432,10 @@ export type RecoveryCaseUpdateManyMutationInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -392,7 +446,10 @@ export type RecoveryCaseUncheckedUpdateManyInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -413,7 +470,10 @@ export type RecoveryCaseCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   amountAtRisk?: Prisma.SortOrder
   amountRecovered?: Prisma.SortOrder
+  failureReason?: Prisma.SortOrder
+  closureReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   resolvedAt?: Prisma.SortOrder
 }
 
@@ -429,7 +489,10 @@ export type RecoveryCaseMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   amountAtRisk?: Prisma.SortOrder
   amountRecovered?: Prisma.SortOrder
+  failureReason?: Prisma.SortOrder
+  closureReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   resolvedAt?: Prisma.SortOrder
 }
 
@@ -440,7 +503,10 @@ export type RecoveryCaseMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   amountAtRisk?: Prisma.SortOrder
   amountRecovered?: Prisma.SortOrder
+  failureReason?: Prisma.SortOrder
+  closureReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   resolvedAt?: Prisma.SortOrder
 }
 
@@ -579,11 +645,14 @@ export type RecoveryCaseCreateWithoutMerchantInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
-  payment: Prisma.PaymentCreateNestedOneWithoutRecoveryCasesInput
   agentExecutions?: Prisma.AgentExecutionCreateNestedManyWithoutRecoveryCaseInput
   actions?: Prisma.RecoveryActionCreateNestedManyWithoutRecoveryCaseInput
+  payment: Prisma.PaymentCreateNestedOneWithoutRecoveryCasesInput
 }
 
 export type RecoveryCaseUncheckedCreateWithoutMerchantInput = {
@@ -592,7 +661,10 @@ export type RecoveryCaseUncheckedCreateWithoutMerchantInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
   agentExecutions?: Prisma.AgentExecutionUncheckedCreateNestedManyWithoutRecoveryCaseInput
   actions?: Prisma.RecoveryActionUncheckedCreateNestedManyWithoutRecoveryCaseInput
@@ -634,7 +706,10 @@ export type RecoveryCaseScalarWhereInput = {
   status?: Prisma.EnumRecoveryStatusFilter<"RecoveryCase"> | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFilter<"RecoveryCase"> | number
   amountRecovered?: Prisma.IntFilter<"RecoveryCase"> | number
+  failureReason?: Prisma.StringNullableFilter<"RecoveryCase"> | string | null
+  closureReason?: Prisma.StringNullableFilter<"RecoveryCase"> | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryCase"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"RecoveryCase"> | Date | string
   resolvedAt?: Prisma.DateTimeNullableFilter<"RecoveryCase"> | Date | string | null
 }
 
@@ -643,11 +718,14 @@ export type RecoveryCaseCreateWithoutPaymentInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
-  merchant: Prisma.MerchantCreateNestedOneWithoutRecoveryCasesInput
   agentExecutions?: Prisma.AgentExecutionCreateNestedManyWithoutRecoveryCaseInput
   actions?: Prisma.RecoveryActionCreateNestedManyWithoutRecoveryCaseInput
+  merchant: Prisma.MerchantCreateNestedOneWithoutRecoveryCasesInput
 }
 
 export type RecoveryCaseUncheckedCreateWithoutPaymentInput = {
@@ -656,7 +734,10 @@ export type RecoveryCaseUncheckedCreateWithoutPaymentInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
   agentExecutions?: Prisma.AgentExecutionUncheckedCreateNestedManyWithoutRecoveryCaseInput
   actions?: Prisma.RecoveryActionUncheckedCreateNestedManyWithoutRecoveryCaseInput
@@ -693,11 +774,14 @@ export type RecoveryCaseCreateWithoutAgentExecutionsInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
+  actions?: Prisma.RecoveryActionCreateNestedManyWithoutRecoveryCaseInput
   merchant: Prisma.MerchantCreateNestedOneWithoutRecoveryCasesInput
   payment: Prisma.PaymentCreateNestedOneWithoutRecoveryCasesInput
-  actions?: Prisma.RecoveryActionCreateNestedManyWithoutRecoveryCaseInput
 }
 
 export type RecoveryCaseUncheckedCreateWithoutAgentExecutionsInput = {
@@ -707,7 +791,10 @@ export type RecoveryCaseUncheckedCreateWithoutAgentExecutionsInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
   actions?: Prisma.RecoveryActionUncheckedCreateNestedManyWithoutRecoveryCaseInput
 }
@@ -733,11 +820,14 @@ export type RecoveryCaseUpdateWithoutAgentExecutionsInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actions?: Prisma.RecoveryActionUpdateManyWithoutRecoveryCaseNestedInput
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutRecoveryCasesNestedInput
   payment?: Prisma.PaymentUpdateOneRequiredWithoutRecoveryCasesNestedInput
-  actions?: Prisma.RecoveryActionUpdateManyWithoutRecoveryCaseNestedInput
 }
 
 export type RecoveryCaseUncheckedUpdateWithoutAgentExecutionsInput = {
@@ -747,7 +837,10 @@ export type RecoveryCaseUncheckedUpdateWithoutAgentExecutionsInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   actions?: Prisma.RecoveryActionUncheckedUpdateManyWithoutRecoveryCaseNestedInput
 }
@@ -757,11 +850,14 @@ export type RecoveryCaseCreateWithoutActionsInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
+  agentExecutions?: Prisma.AgentExecutionCreateNestedManyWithoutRecoveryCaseInput
   merchant: Prisma.MerchantCreateNestedOneWithoutRecoveryCasesInput
   payment: Prisma.PaymentCreateNestedOneWithoutRecoveryCasesInput
-  agentExecutions?: Prisma.AgentExecutionCreateNestedManyWithoutRecoveryCaseInput
 }
 
 export type RecoveryCaseUncheckedCreateWithoutActionsInput = {
@@ -771,7 +867,10 @@ export type RecoveryCaseUncheckedCreateWithoutActionsInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
   agentExecutions?: Prisma.AgentExecutionUncheckedCreateNestedManyWithoutRecoveryCaseInput
 }
@@ -797,11 +896,14 @@ export type RecoveryCaseUpdateWithoutActionsInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  agentExecutions?: Prisma.AgentExecutionUpdateManyWithoutRecoveryCaseNestedInput
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutRecoveryCasesNestedInput
   payment?: Prisma.PaymentUpdateOneRequiredWithoutRecoveryCasesNestedInput
-  agentExecutions?: Prisma.AgentExecutionUpdateManyWithoutRecoveryCaseNestedInput
 }
 
 export type RecoveryCaseUncheckedUpdateWithoutActionsInput = {
@@ -811,7 +913,10 @@ export type RecoveryCaseUncheckedUpdateWithoutActionsInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   agentExecutions?: Prisma.AgentExecutionUncheckedUpdateManyWithoutRecoveryCaseNestedInput
 }
@@ -822,7 +927,10 @@ export type RecoveryCaseCreateManyMerchantInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
 }
 
@@ -831,11 +939,14 @@ export type RecoveryCaseUpdateWithoutMerchantInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  payment?: Prisma.PaymentUpdateOneRequiredWithoutRecoveryCasesNestedInput
   agentExecutions?: Prisma.AgentExecutionUpdateManyWithoutRecoveryCaseNestedInput
   actions?: Prisma.RecoveryActionUpdateManyWithoutRecoveryCaseNestedInput
+  payment?: Prisma.PaymentUpdateOneRequiredWithoutRecoveryCasesNestedInput
 }
 
 export type RecoveryCaseUncheckedUpdateWithoutMerchantInput = {
@@ -844,7 +955,10 @@ export type RecoveryCaseUncheckedUpdateWithoutMerchantInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   agentExecutions?: Prisma.AgentExecutionUncheckedUpdateManyWithoutRecoveryCaseNestedInput
   actions?: Prisma.RecoveryActionUncheckedUpdateManyWithoutRecoveryCaseNestedInput
@@ -856,7 +970,10 @@ export type RecoveryCaseUncheckedUpdateManyWithoutMerchantInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -866,7 +983,10 @@ export type RecoveryCaseCreateManyPaymentInput = {
   status: $Enums.RecoveryStatus
   amountAtRisk: number
   amountRecovered?: number
+  failureReason?: string | null
+  closureReason?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   resolvedAt?: Date | string | null
 }
 
@@ -875,11 +995,14 @@ export type RecoveryCaseUpdateWithoutPaymentInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  merchant?: Prisma.MerchantUpdateOneRequiredWithoutRecoveryCasesNestedInput
   agentExecutions?: Prisma.AgentExecutionUpdateManyWithoutRecoveryCaseNestedInput
   actions?: Prisma.RecoveryActionUpdateManyWithoutRecoveryCaseNestedInput
+  merchant?: Prisma.MerchantUpdateOneRequiredWithoutRecoveryCasesNestedInput
 }
 
 export type RecoveryCaseUncheckedUpdateWithoutPaymentInput = {
@@ -888,7 +1011,10 @@ export type RecoveryCaseUncheckedUpdateWithoutPaymentInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   agentExecutions?: Prisma.AgentExecutionUncheckedUpdateManyWithoutRecoveryCaseNestedInput
   actions?: Prisma.RecoveryActionUncheckedUpdateManyWithoutRecoveryCaseNestedInput
@@ -900,7 +1026,10 @@ export type RecoveryCaseUncheckedUpdateManyWithoutPaymentInput = {
   status?: Prisma.EnumRecoveryStatusFieldUpdateOperationsInput | $Enums.RecoveryStatus
   amountAtRisk?: Prisma.IntFieldUpdateOperationsInput | number
   amountRecovered?: Prisma.IntFieldUpdateOperationsInput | number
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  closureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resolvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -951,12 +1080,15 @@ export type RecoveryCaseSelect<ExtArgs extends runtime.Types.Extensions.Internal
   status?: boolean
   amountAtRisk?: boolean
   amountRecovered?: boolean
+  failureReason?: boolean
+  closureReason?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   resolvedAt?: boolean
-  merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
-  payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
   agentExecutions?: boolean | Prisma.RecoveryCase$agentExecutionsArgs<ExtArgs>
   actions?: boolean | Prisma.RecoveryCase$actionsArgs<ExtArgs>
+  merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
+  payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.RecoveryCaseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recoveryCase"]>
 
@@ -967,7 +1099,10 @@ export type RecoveryCaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   status?: boolean
   amountAtRisk?: boolean
   amountRecovered?: boolean
+  failureReason?: boolean
+  closureReason?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   resolvedAt?: boolean
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
@@ -980,7 +1115,10 @@ export type RecoveryCaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   status?: boolean
   amountAtRisk?: boolean
   amountRecovered?: boolean
+  failureReason?: boolean
+  closureReason?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   resolvedAt?: boolean
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
@@ -993,16 +1131,19 @@ export type RecoveryCaseSelectScalar = {
   status?: boolean
   amountAtRisk?: boolean
   amountRecovered?: boolean
+  failureReason?: boolean
+  closureReason?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   resolvedAt?: boolean
 }
 
-export type RecoveryCaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "merchantId" | "paymentId" | "status" | "amountAtRisk" | "amountRecovered" | "createdAt" | "resolvedAt", ExtArgs["result"]["recoveryCase"]>
+export type RecoveryCaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "merchantId" | "paymentId" | "status" | "amountAtRisk" | "amountRecovered" | "failureReason" | "closureReason" | "createdAt" | "updatedAt" | "resolvedAt", ExtArgs["result"]["recoveryCase"]>
 export type RecoveryCaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
-  payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
   agentExecutions?: boolean | Prisma.RecoveryCase$agentExecutionsArgs<ExtArgs>
   actions?: boolean | Prisma.RecoveryCase$actionsArgs<ExtArgs>
+  merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
+  payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.RecoveryCaseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RecoveryCaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1017,10 +1158,10 @@ export type RecoveryCaseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $RecoveryCasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RecoveryCase"
   objects: {
-    merchant: Prisma.$MerchantPayload<ExtArgs>
-    payment: Prisma.$PaymentPayload<ExtArgs>
     agentExecutions: Prisma.$AgentExecutionPayload<ExtArgs>[]
     actions: Prisma.$RecoveryActionPayload<ExtArgs>[]
+    merchant: Prisma.$MerchantPayload<ExtArgs>
+    payment: Prisma.$PaymentPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1029,7 +1170,10 @@ export type $RecoveryCasePayload<ExtArgs extends runtime.Types.Extensions.Intern
     status: $Enums.RecoveryStatus
     amountAtRisk: number
     amountRecovered: number
+    failureReason: string | null
+    closureReason: string | null
     createdAt: Date
+    updatedAt: Date
     resolvedAt: Date | null
   }, ExtArgs["result"]["recoveryCase"]>
   composites: {}
@@ -1425,10 +1569,10 @@ readonly fields: RecoveryCaseFieldRefs;
  */
 export interface Prisma__RecoveryCaseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  merchant<T extends Prisma.MerchantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MerchantDefaultArgs<ExtArgs>>): Prisma.Prisma__MerchantClient<runtime.Types.Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  payment<T extends Prisma.PaymentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentDefaultArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   agentExecutions<T extends Prisma.RecoveryCase$agentExecutionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecoveryCase$agentExecutionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentExecutionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   actions<T extends Prisma.RecoveryCase$actionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecoveryCase$actionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecoveryActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  merchant<T extends Prisma.MerchantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MerchantDefaultArgs<ExtArgs>>): Prisma.Prisma__MerchantClient<runtime.Types.Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  payment<T extends Prisma.PaymentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentDefaultArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1464,7 +1608,10 @@ export interface RecoveryCaseFieldRefs {
   readonly status: Prisma.FieldRef<"RecoveryCase", 'RecoveryStatus'>
   readonly amountAtRisk: Prisma.FieldRef<"RecoveryCase", 'Int'>
   readonly amountRecovered: Prisma.FieldRef<"RecoveryCase", 'Int'>
+  readonly failureReason: Prisma.FieldRef<"RecoveryCase", 'String'>
+  readonly closureReason: Prisma.FieldRef<"RecoveryCase", 'String'>
   readonly createdAt: Prisma.FieldRef<"RecoveryCase", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"RecoveryCase", 'DateTime'>
   readonly resolvedAt: Prisma.FieldRef<"RecoveryCase", 'DateTime'>
 }
     

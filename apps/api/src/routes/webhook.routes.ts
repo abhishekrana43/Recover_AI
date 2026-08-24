@@ -137,7 +137,9 @@ router.post(
           data: {
             eventId,
             eventType,
+            provider: "RAZORPAY",
             processed: true,
+            status: "PROCESSED",
             processedAt: new Date(),
           },
         });

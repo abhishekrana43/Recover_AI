@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.ts"
-import type * as Prisma from "../internal/prismaNamespace.ts"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model AgentExecution
@@ -28,80 +28,150 @@ export type AggregateAgentExecution = {
 
 export type AgentExecutionAvgAggregateOutputType = {
   confidence: number | null
+  latencyMs: number | null
 }
 
 export type AgentExecutionSumAggregateOutputType = {
   confidence: number | null
+  latencyMs: number | null
 }
 
 export type AgentExecutionMinAggregateOutputType = {
   id: string | null
   recoveryCaseId: string | null
   model: string | null
+  modelVersion: string | null
+  agentType: string | null
+  agentName: string | null
+  status: $Enums.AgentExecutionStatus | null
   recommendedAction: $Enums.RecoveryActionType | null
   reasoning: string | null
   confidence: number | null
+  latencyMs: number | null
+  error: string | null
+  startedAt: Date | null
+  completedAt: Date | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type AgentExecutionMaxAggregateOutputType = {
   id: string | null
   recoveryCaseId: string | null
   model: string | null
+  modelVersion: string | null
+  agentType: string | null
+  agentName: string | null
+  status: $Enums.AgentExecutionStatus | null
   recommendedAction: $Enums.RecoveryActionType | null
   reasoning: string | null
   confidence: number | null
+  latencyMs: number | null
+  error: string | null
+  startedAt: Date | null
+  completedAt: Date | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type AgentExecutionCountAggregateOutputType = {
   id: number
   recoveryCaseId: number
   model: number
+  modelVersion: number
+  agentType: number
+  agentName: number
+  status: number
   recommendedAction: number
   reasoning: number
   confidence: number
+  input: number
+  recommendation: number
+  toolCalls: number
+  policyResult: number
+  rawOutput: number
+  tokenUsage: number
+  latencyMs: number
+  error: number
+  startedAt: number
+  completedAt: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
 
 export type AgentExecutionAvgAggregateInputType = {
   confidence?: true
+  latencyMs?: true
 }
 
 export type AgentExecutionSumAggregateInputType = {
   confidence?: true
+  latencyMs?: true
 }
 
 export type AgentExecutionMinAggregateInputType = {
   id?: true
   recoveryCaseId?: true
   model?: true
+  modelVersion?: true
+  agentType?: true
+  agentName?: true
+  status?: true
   recommendedAction?: true
   reasoning?: true
   confidence?: true
+  latencyMs?: true
+  error?: true
+  startedAt?: true
+  completedAt?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type AgentExecutionMaxAggregateInputType = {
   id?: true
   recoveryCaseId?: true
   model?: true
+  modelVersion?: true
+  agentType?: true
+  agentName?: true
+  status?: true
   recommendedAction?: true
   reasoning?: true
   confidence?: true
+  latencyMs?: true
+  error?: true
+  startedAt?: true
+  completedAt?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type AgentExecutionCountAggregateInputType = {
   id?: true
   recoveryCaseId?: true
   model?: true
+  modelVersion?: true
+  agentType?: true
+  agentName?: true
+  status?: true
   recommendedAction?: true
   reasoning?: true
   confidence?: true
+  input?: true
+  recommendation?: true
+  toolCalls?: true
+  policyResult?: true
+  rawOutput?: true
+  tokenUsage?: true
+  latencyMs?: true
+  error?: true
+  startedAt?: true
+  completedAt?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -195,10 +265,25 @@ export type AgentExecutionGroupByOutputType = {
   id: string
   recoveryCaseId: string
   model: string
-  recommendedAction: $Enums.RecoveryActionType
-  reasoning: string
+  modelVersion: string | null
+  agentType: string
+  agentName: string
+  status: $Enums.AgentExecutionStatus
+  recommendedAction: $Enums.RecoveryActionType | null
+  reasoning: string | null
   confidence: number | null
+  input: runtime.JsonValue | null
+  recommendation: runtime.JsonValue | null
+  toolCalls: runtime.JsonValue | null
+  policyResult: runtime.JsonValue | null
+  rawOutput: runtime.JsonValue | null
+  tokenUsage: runtime.JsonValue | null
+  latencyMs: number | null
+  error: string | null
+  startedAt: Date | null
+  completedAt: Date | null
   createdAt: Date
+  updatedAt: Date
   _count: AgentExecutionCountAggregateOutputType | null
   _avg: AgentExecutionAvgAggregateOutputType | null
   _sum: AgentExecutionSumAggregateOutputType | null
@@ -228,10 +313,25 @@ export type AgentExecutionWhereInput = {
   id?: Prisma.StringFilter<"AgentExecution"> | string
   recoveryCaseId?: Prisma.StringFilter<"AgentExecution"> | string
   model?: Prisma.StringFilter<"AgentExecution"> | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFilter<"AgentExecution"> | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFilter<"AgentExecution"> | string
+  modelVersion?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
+  agentType?: Prisma.StringFilter<"AgentExecution"> | string
+  agentName?: Prisma.StringFilter<"AgentExecution"> | string
+  status?: Prisma.EnumAgentExecutionStatusFilter<"AgentExecution"> | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.EnumRecoveryActionTypeNullableFilter<"AgentExecution"> | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
   confidence?: Prisma.FloatNullableFilter<"AgentExecution"> | number | null
+  input?: Prisma.JsonNullableFilter<"AgentExecution">
+  recommendation?: Prisma.JsonNullableFilter<"AgentExecution">
+  toolCalls?: Prisma.JsonNullableFilter<"AgentExecution">
+  policyResult?: Prisma.JsonNullableFilter<"AgentExecution">
+  rawOutput?: Prisma.JsonNullableFilter<"AgentExecution">
+  tokenUsage?: Prisma.JsonNullableFilter<"AgentExecution">
+  latencyMs?: Prisma.IntNullableFilter<"AgentExecution"> | number | null
+  error?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
+  startedAt?: Prisma.DateTimeNullableFilter<"AgentExecution"> | Date | string | null
+  completedAt?: Prisma.DateTimeNullableFilter<"AgentExecution"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"AgentExecution"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AgentExecution"> | Date | string
   recoveryCase?: Prisma.XOR<Prisma.RecoveryCaseScalarRelationFilter, Prisma.RecoveryCaseWhereInput>
 }
 
@@ -239,10 +339,25 @@ export type AgentExecutionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   recoveryCaseId?: Prisma.SortOrder
   model?: Prisma.SortOrder
-  recommendedAction?: Prisma.SortOrder
-  reasoning?: Prisma.SortOrder
+  modelVersion?: Prisma.SortOrderInput | Prisma.SortOrder
+  agentType?: Prisma.SortOrder
+  agentName?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  recommendedAction?: Prisma.SortOrderInput | Prisma.SortOrder
+  reasoning?: Prisma.SortOrderInput | Prisma.SortOrder
   confidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  input?: Prisma.SortOrderInput | Prisma.SortOrder
+  recommendation?: Prisma.SortOrderInput | Prisma.SortOrder
+  toolCalls?: Prisma.SortOrderInput | Prisma.SortOrder
+  policyResult?: Prisma.SortOrderInput | Prisma.SortOrder
+  rawOutput?: Prisma.SortOrderInput | Prisma.SortOrder
+  tokenUsage?: Prisma.SortOrderInput | Prisma.SortOrder
+  latencyMs?: Prisma.SortOrderInput | Prisma.SortOrder
+  error?: Prisma.SortOrderInput | Prisma.SortOrder
+  startedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   recoveryCase?: Prisma.RecoveryCaseOrderByWithRelationInput
 }
 
@@ -253,10 +368,25 @@ export type AgentExecutionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AgentExecutionWhereInput | Prisma.AgentExecutionWhereInput[]
   recoveryCaseId?: Prisma.StringFilter<"AgentExecution"> | string
   model?: Prisma.StringFilter<"AgentExecution"> | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFilter<"AgentExecution"> | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFilter<"AgentExecution"> | string
+  modelVersion?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
+  agentType?: Prisma.StringFilter<"AgentExecution"> | string
+  agentName?: Prisma.StringFilter<"AgentExecution"> | string
+  status?: Prisma.EnumAgentExecutionStatusFilter<"AgentExecution"> | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.EnumRecoveryActionTypeNullableFilter<"AgentExecution"> | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
   confidence?: Prisma.FloatNullableFilter<"AgentExecution"> | number | null
+  input?: Prisma.JsonNullableFilter<"AgentExecution">
+  recommendation?: Prisma.JsonNullableFilter<"AgentExecution">
+  toolCalls?: Prisma.JsonNullableFilter<"AgentExecution">
+  policyResult?: Prisma.JsonNullableFilter<"AgentExecution">
+  rawOutput?: Prisma.JsonNullableFilter<"AgentExecution">
+  tokenUsage?: Prisma.JsonNullableFilter<"AgentExecution">
+  latencyMs?: Prisma.IntNullableFilter<"AgentExecution"> | number | null
+  error?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
+  startedAt?: Prisma.DateTimeNullableFilter<"AgentExecution"> | Date | string | null
+  completedAt?: Prisma.DateTimeNullableFilter<"AgentExecution"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"AgentExecution"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AgentExecution"> | Date | string
   recoveryCase?: Prisma.XOR<Prisma.RecoveryCaseScalarRelationFilter, Prisma.RecoveryCaseWhereInput>
 }, "id">
 
@@ -264,10 +394,25 @@ export type AgentExecutionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   recoveryCaseId?: Prisma.SortOrder
   model?: Prisma.SortOrder
-  recommendedAction?: Prisma.SortOrder
-  reasoning?: Prisma.SortOrder
+  modelVersion?: Prisma.SortOrderInput | Prisma.SortOrder
+  agentType?: Prisma.SortOrder
+  agentName?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  recommendedAction?: Prisma.SortOrderInput | Prisma.SortOrder
+  reasoning?: Prisma.SortOrderInput | Prisma.SortOrder
   confidence?: Prisma.SortOrderInput | Prisma.SortOrder
+  input?: Prisma.SortOrderInput | Prisma.SortOrder
+  recommendation?: Prisma.SortOrderInput | Prisma.SortOrder
+  toolCalls?: Prisma.SortOrderInput | Prisma.SortOrder
+  policyResult?: Prisma.SortOrderInput | Prisma.SortOrder
+  rawOutput?: Prisma.SortOrderInput | Prisma.SortOrder
+  tokenUsage?: Prisma.SortOrderInput | Prisma.SortOrder
+  latencyMs?: Prisma.SortOrderInput | Prisma.SortOrder
+  error?: Prisma.SortOrderInput | Prisma.SortOrder
+  startedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.AgentExecutionCountOrderByAggregateInput
   _avg?: Prisma.AgentExecutionAvgOrderByAggregateInput
   _max?: Prisma.AgentExecutionMaxOrderByAggregateInput
@@ -282,19 +427,49 @@ export type AgentExecutionScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"AgentExecution"> | string
   recoveryCaseId?: Prisma.StringWithAggregatesFilter<"AgentExecution"> | string
   model?: Prisma.StringWithAggregatesFilter<"AgentExecution"> | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeWithAggregatesFilter<"AgentExecution"> | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringWithAggregatesFilter<"AgentExecution"> | string
+  modelVersion?: Prisma.StringNullableWithAggregatesFilter<"AgentExecution"> | string | null
+  agentType?: Prisma.StringWithAggregatesFilter<"AgentExecution"> | string
+  agentName?: Prisma.StringWithAggregatesFilter<"AgentExecution"> | string
+  status?: Prisma.EnumAgentExecutionStatusWithAggregatesFilter<"AgentExecution"> | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.EnumRecoveryActionTypeNullableWithAggregatesFilter<"AgentExecution"> | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.StringNullableWithAggregatesFilter<"AgentExecution"> | string | null
   confidence?: Prisma.FloatNullableWithAggregatesFilter<"AgentExecution"> | number | null
+  input?: Prisma.JsonNullableWithAggregatesFilter<"AgentExecution">
+  recommendation?: Prisma.JsonNullableWithAggregatesFilter<"AgentExecution">
+  toolCalls?: Prisma.JsonNullableWithAggregatesFilter<"AgentExecution">
+  policyResult?: Prisma.JsonNullableWithAggregatesFilter<"AgentExecution">
+  rawOutput?: Prisma.JsonNullableWithAggregatesFilter<"AgentExecution">
+  tokenUsage?: Prisma.JsonNullableWithAggregatesFilter<"AgentExecution">
+  latencyMs?: Prisma.IntNullableWithAggregatesFilter<"AgentExecution"> | number | null
+  error?: Prisma.StringNullableWithAggregatesFilter<"AgentExecution"> | string | null
+  startedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AgentExecution"> | Date | string | null
+  completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AgentExecution"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AgentExecution"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AgentExecution"> | Date | string
 }
 
 export type AgentExecutionCreateInput = {
   id?: string
   model: string
-  recommendedAction: $Enums.RecoveryActionType
-  reasoning: string
+  modelVersion?: string | null
+  agentType?: string
+  agentName?: string
+  status?: $Enums.AgentExecutionStatus
+  recommendedAction?: $Enums.RecoveryActionType | null
+  reasoning?: string | null
   confidence?: number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: number | null
+  error?: string | null
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   recoveryCase: Prisma.RecoveryCaseCreateNestedOneWithoutAgentExecutionsInput
 }
 
@@ -302,19 +477,49 @@ export type AgentExecutionUncheckedCreateInput = {
   id?: string
   recoveryCaseId: string
   model: string
-  recommendedAction: $Enums.RecoveryActionType
-  reasoning: string
+  modelVersion?: string | null
+  agentType?: string
+  agentName?: string
+  status?: $Enums.AgentExecutionStatus
+  recommendedAction?: $Enums.RecoveryActionType | null
+  reasoning?: string | null
   confidence?: number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: number | null
+  error?: string | null
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type AgentExecutionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  modelVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.StringFieldUpdateOperationsInput | string
+  agentName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAgentExecutionStatusFieldUpdateOperationsInput | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.NullableEnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recoveryCase?: Prisma.RecoveryCaseUpdateOneRequiredWithoutAgentExecutionsNestedInput
 }
 
@@ -322,39 +527,99 @@ export type AgentExecutionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   recoveryCaseId?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  modelVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.StringFieldUpdateOperationsInput | string
+  agentName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAgentExecutionStatusFieldUpdateOperationsInput | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.NullableEnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AgentExecutionCreateManyInput = {
   id?: string
   recoveryCaseId: string
   model: string
-  recommendedAction: $Enums.RecoveryActionType
-  reasoning: string
+  modelVersion?: string | null
+  agentType?: string
+  agentName?: string
+  status?: $Enums.AgentExecutionStatus
+  recommendedAction?: $Enums.RecoveryActionType | null
+  reasoning?: string | null
   confidence?: number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: number | null
+  error?: string | null
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type AgentExecutionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  modelVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.StringFieldUpdateOperationsInput | string
+  agentName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAgentExecutionStatusFieldUpdateOperationsInput | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.NullableEnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AgentExecutionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   recoveryCaseId?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  modelVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.StringFieldUpdateOperationsInput | string
+  agentName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAgentExecutionStatusFieldUpdateOperationsInput | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.NullableEnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AgentExecutionListRelationFilter = {
@@ -371,38 +636,73 @@ export type AgentExecutionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   recoveryCaseId?: Prisma.SortOrder
   model?: Prisma.SortOrder
+  modelVersion?: Prisma.SortOrder
+  agentType?: Prisma.SortOrder
+  agentName?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   recommendedAction?: Prisma.SortOrder
   reasoning?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
+  input?: Prisma.SortOrder
+  recommendation?: Prisma.SortOrder
+  toolCalls?: Prisma.SortOrder
+  policyResult?: Prisma.SortOrder
+  rawOutput?: Prisma.SortOrder
+  tokenUsage?: Prisma.SortOrder
+  latencyMs?: Prisma.SortOrder
+  error?: Prisma.SortOrder
+  startedAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type AgentExecutionAvgOrderByAggregateInput = {
   confidence?: Prisma.SortOrder
+  latencyMs?: Prisma.SortOrder
 }
 
 export type AgentExecutionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   recoveryCaseId?: Prisma.SortOrder
   model?: Prisma.SortOrder
+  modelVersion?: Prisma.SortOrder
+  agentType?: Prisma.SortOrder
+  agentName?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   recommendedAction?: Prisma.SortOrder
   reasoning?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
+  latencyMs?: Prisma.SortOrder
+  error?: Prisma.SortOrder
+  startedAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type AgentExecutionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   recoveryCaseId?: Prisma.SortOrder
   model?: Prisma.SortOrder
+  modelVersion?: Prisma.SortOrder
+  agentType?: Prisma.SortOrder
+  agentName?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   recommendedAction?: Prisma.SortOrder
   reasoning?: Prisma.SortOrder
   confidence?: Prisma.SortOrder
+  latencyMs?: Prisma.SortOrder
+  error?: Prisma.SortOrder
+  startedAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type AgentExecutionSumOrderByAggregateInput = {
   confidence?: Prisma.SortOrder
+  latencyMs?: Prisma.SortOrder
 }
 
 export type AgentExecutionCreateNestedManyWithoutRecoveryCaseInput = {
@@ -447,8 +747,12 @@ export type AgentExecutionUncheckedUpdateManyWithoutRecoveryCaseNestedInput = {
   deleteMany?: Prisma.AgentExecutionScalarWhereInput | Prisma.AgentExecutionScalarWhereInput[]
 }
 
-export type EnumRecoveryActionTypeFieldUpdateOperationsInput = {
-  set?: $Enums.RecoveryActionType
+export type EnumAgentExecutionStatusFieldUpdateOperationsInput = {
+  set?: $Enums.AgentExecutionStatus
+}
+
+export type NullableEnumRecoveryActionTypeFieldUpdateOperationsInput = {
+  set?: $Enums.RecoveryActionType | null
 }
 
 export type NullableFloatFieldUpdateOperationsInput = {
@@ -459,22 +763,60 @@ export type NullableFloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type AgentExecutionCreateWithoutRecoveryCaseInput = {
   id?: string
   model: string
-  recommendedAction: $Enums.RecoveryActionType
-  reasoning: string
+  modelVersion?: string | null
+  agentType?: string
+  agentName?: string
+  status?: $Enums.AgentExecutionStatus
+  recommendedAction?: $Enums.RecoveryActionType | null
+  reasoning?: string | null
   confidence?: number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: number | null
+  error?: string | null
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type AgentExecutionUncheckedCreateWithoutRecoveryCaseInput = {
   id?: string
   model: string
-  recommendedAction: $Enums.RecoveryActionType
-  reasoning: string
+  modelVersion?: string | null
+  agentType?: string
+  agentName?: string
+  status?: $Enums.AgentExecutionStatus
+  recommendedAction?: $Enums.RecoveryActionType | null
+  reasoning?: string | null
   confidence?: number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: number | null
+  error?: string | null
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type AgentExecutionCreateOrConnectWithoutRecoveryCaseInput = {
@@ -510,46 +852,121 @@ export type AgentExecutionScalarWhereInput = {
   id?: Prisma.StringFilter<"AgentExecution"> | string
   recoveryCaseId?: Prisma.StringFilter<"AgentExecution"> | string
   model?: Prisma.StringFilter<"AgentExecution"> | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFilter<"AgentExecution"> | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFilter<"AgentExecution"> | string
+  modelVersion?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
+  agentType?: Prisma.StringFilter<"AgentExecution"> | string
+  agentName?: Prisma.StringFilter<"AgentExecution"> | string
+  status?: Prisma.EnumAgentExecutionStatusFilter<"AgentExecution"> | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.EnumRecoveryActionTypeNullableFilter<"AgentExecution"> | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
   confidence?: Prisma.FloatNullableFilter<"AgentExecution"> | number | null
+  input?: Prisma.JsonNullableFilter<"AgentExecution">
+  recommendation?: Prisma.JsonNullableFilter<"AgentExecution">
+  toolCalls?: Prisma.JsonNullableFilter<"AgentExecution">
+  policyResult?: Prisma.JsonNullableFilter<"AgentExecution">
+  rawOutput?: Prisma.JsonNullableFilter<"AgentExecution">
+  tokenUsage?: Prisma.JsonNullableFilter<"AgentExecution">
+  latencyMs?: Prisma.IntNullableFilter<"AgentExecution"> | number | null
+  error?: Prisma.StringNullableFilter<"AgentExecution"> | string | null
+  startedAt?: Prisma.DateTimeNullableFilter<"AgentExecution"> | Date | string | null
+  completedAt?: Prisma.DateTimeNullableFilter<"AgentExecution"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"AgentExecution"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AgentExecution"> | Date | string
 }
 
 export type AgentExecutionCreateManyRecoveryCaseInput = {
   id?: string
   model: string
-  recommendedAction: $Enums.RecoveryActionType
-  reasoning: string
+  modelVersion?: string | null
+  agentType?: string
+  agentName?: string
+  status?: $Enums.AgentExecutionStatus
+  recommendedAction?: $Enums.RecoveryActionType | null
+  reasoning?: string | null
   confidence?: number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: number | null
+  error?: string | null
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type AgentExecutionUpdateWithoutRecoveryCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  modelVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.StringFieldUpdateOperationsInput | string
+  agentName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAgentExecutionStatusFieldUpdateOperationsInput | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.NullableEnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AgentExecutionUncheckedUpdateWithoutRecoveryCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  modelVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.StringFieldUpdateOperationsInput | string
+  agentName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAgentExecutionStatusFieldUpdateOperationsInput | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.NullableEnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AgentExecutionUncheckedUpdateManyWithoutRecoveryCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  recommendedAction?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
-  reasoning?: Prisma.StringFieldUpdateOperationsInput | string
+  modelVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.StringFieldUpdateOperationsInput | string
+  agentName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAgentExecutionStatusFieldUpdateOperationsInput | $Enums.AgentExecutionStatus
+  recommendedAction?: Prisma.NullableEnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType | null
+  reasoning?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   confidence?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  input?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  recommendation?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  toolCalls?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policyResult?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rawOutput?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  tokenUsage?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  latencyMs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -558,10 +975,25 @@ export type AgentExecutionSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   recoveryCaseId?: boolean
   model?: boolean
+  modelVersion?: boolean
+  agentType?: boolean
+  agentName?: boolean
+  status?: boolean
   recommendedAction?: boolean
   reasoning?: boolean
   confidence?: boolean
+  input?: boolean
+  recommendation?: boolean
+  toolCalls?: boolean
+  policyResult?: boolean
+  rawOutput?: boolean
+  tokenUsage?: boolean
+  latencyMs?: boolean
+  error?: boolean
+  startedAt?: boolean
+  completedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["agentExecution"]>
 
@@ -569,10 +1001,25 @@ export type AgentExecutionSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   recoveryCaseId?: boolean
   model?: boolean
+  modelVersion?: boolean
+  agentType?: boolean
+  agentName?: boolean
+  status?: boolean
   recommendedAction?: boolean
   reasoning?: boolean
   confidence?: boolean
+  input?: boolean
+  recommendation?: boolean
+  toolCalls?: boolean
+  policyResult?: boolean
+  rawOutput?: boolean
+  tokenUsage?: boolean
+  latencyMs?: boolean
+  error?: boolean
+  startedAt?: boolean
+  completedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["agentExecution"]>
 
@@ -580,10 +1027,25 @@ export type AgentExecutionSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   recoveryCaseId?: boolean
   model?: boolean
+  modelVersion?: boolean
+  agentType?: boolean
+  agentName?: boolean
+  status?: boolean
   recommendedAction?: boolean
   reasoning?: boolean
   confidence?: boolean
+  input?: boolean
+  recommendation?: boolean
+  toolCalls?: boolean
+  policyResult?: boolean
+  rawOutput?: boolean
+  tokenUsage?: boolean
+  latencyMs?: boolean
+  error?: boolean
+  startedAt?: boolean
+  completedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["agentExecution"]>
 
@@ -591,13 +1053,28 @@ export type AgentExecutionSelectScalar = {
   id?: boolean
   recoveryCaseId?: boolean
   model?: boolean
+  modelVersion?: boolean
+  agentType?: boolean
+  agentName?: boolean
+  status?: boolean
   recommendedAction?: boolean
   reasoning?: boolean
   confidence?: boolean
+  input?: boolean
+  recommendation?: boolean
+  toolCalls?: boolean
+  policyResult?: boolean
+  rawOutput?: boolean
+  tokenUsage?: boolean
+  latencyMs?: boolean
+  error?: boolean
+  startedAt?: boolean
+  completedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type AgentExecutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "recoveryCaseId" | "model" | "recommendedAction" | "reasoning" | "confidence" | "createdAt", ExtArgs["result"]["agentExecution"]>
+export type AgentExecutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "recoveryCaseId" | "model" | "modelVersion" | "agentType" | "agentName" | "status" | "recommendedAction" | "reasoning" | "confidence" | "input" | "recommendation" | "toolCalls" | "policyResult" | "rawOutput" | "tokenUsage" | "latencyMs" | "error" | "startedAt" | "completedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["agentExecution"]>
 export type AgentExecutionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }
@@ -617,10 +1094,25 @@ export type $AgentExecutionPayload<ExtArgs extends runtime.Types.Extensions.Inte
     id: string
     recoveryCaseId: string
     model: string
-    recommendedAction: $Enums.RecoveryActionType
-    reasoning: string
+    modelVersion: string | null
+    agentType: string
+    agentName: string
+    status: $Enums.AgentExecutionStatus
+    recommendedAction: $Enums.RecoveryActionType | null
+    reasoning: string | null
     confidence: number | null
+    input: runtime.JsonValue | null
+    recommendation: runtime.JsonValue | null
+    toolCalls: runtime.JsonValue | null
+    policyResult: runtime.JsonValue | null
+    rawOutput: runtime.JsonValue | null
+    tokenUsage: runtime.JsonValue | null
+    latencyMs: number | null
+    error: string | null
+    startedAt: Date | null
+    completedAt: Date | null
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["agentExecution"]>
   composites: {}
 }
@@ -1048,10 +1540,25 @@ export interface AgentExecutionFieldRefs {
   readonly id: Prisma.FieldRef<"AgentExecution", 'String'>
   readonly recoveryCaseId: Prisma.FieldRef<"AgentExecution", 'String'>
   readonly model: Prisma.FieldRef<"AgentExecution", 'String'>
+  readonly modelVersion: Prisma.FieldRef<"AgentExecution", 'String'>
+  readonly agentType: Prisma.FieldRef<"AgentExecution", 'String'>
+  readonly agentName: Prisma.FieldRef<"AgentExecution", 'String'>
+  readonly status: Prisma.FieldRef<"AgentExecution", 'AgentExecutionStatus'>
   readonly recommendedAction: Prisma.FieldRef<"AgentExecution", 'RecoveryActionType'>
   readonly reasoning: Prisma.FieldRef<"AgentExecution", 'String'>
   readonly confidence: Prisma.FieldRef<"AgentExecution", 'Float'>
+  readonly input: Prisma.FieldRef<"AgentExecution", 'Json'>
+  readonly recommendation: Prisma.FieldRef<"AgentExecution", 'Json'>
+  readonly toolCalls: Prisma.FieldRef<"AgentExecution", 'Json'>
+  readonly policyResult: Prisma.FieldRef<"AgentExecution", 'Json'>
+  readonly rawOutput: Prisma.FieldRef<"AgentExecution", 'Json'>
+  readonly tokenUsage: Prisma.FieldRef<"AgentExecution", 'Json'>
+  readonly latencyMs: Prisma.FieldRef<"AgentExecution", 'Int'>
+  readonly error: Prisma.FieldRef<"AgentExecution", 'String'>
+  readonly startedAt: Prisma.FieldRef<"AgentExecution", 'DateTime'>
+  readonly completedAt: Prisma.FieldRef<"AgentExecution", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"AgentExecution", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"AgentExecution", 'DateTime'>
 }
     
 

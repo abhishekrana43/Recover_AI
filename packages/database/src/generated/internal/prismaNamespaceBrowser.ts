@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models.ts'
-export type * from './prismaNamespace.ts'
+export type * from '../models.js'
+export type * from './prismaNamespace.js'
 
 export const Decimal = runtime.Decimal
 
@@ -138,7 +138,10 @@ export const RecoveryCaseScalarFieldEnum = {
   status: 'status',
   amountAtRisk: 'amountAtRisk',
   amountRecovered: 'amountRecovered',
+  failureReason: 'failureReason',
+  closureReason: 'closureReason',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   resolvedAt: 'resolvedAt'
 } as const
 
@@ -149,10 +152,25 @@ export const AgentExecutionScalarFieldEnum = {
   id: 'id',
   recoveryCaseId: 'recoveryCaseId',
   model: 'model',
+  modelVersion: 'modelVersion',
+  agentType: 'agentType',
+  agentName: 'agentName',
+  status: 'status',
   recommendedAction: 'recommendedAction',
   reasoning: 'reasoning',
   confidence: 'confidence',
-  createdAt: 'createdAt'
+  input: 'input',
+  recommendation: 'recommendation',
+  toolCalls: 'toolCalls',
+  policyResult: 'policyResult',
+  rawOutput: 'rawOutput',
+  tokenUsage: 'tokenUsage',
+  latencyMs: 'latencyMs',
+  error: 'error',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type AgentExecutionScalarFieldEnum = (typeof AgentExecutionScalarFieldEnum)[keyof typeof AgentExecutionScalarFieldEnum]
@@ -163,9 +181,22 @@ export const RecoveryActionScalarFieldEnum = {
   recoveryCaseId: 'recoveryCaseId',
   type: 'type',
   status: 'status',
-  executedAt: 'executedAt',
+  payload: 'payload',
   result: 'result',
-  createdAt: 'createdAt'
+  error: 'error',
+  retryCount: 'retryCount',
+  externalProviderId: 'externalProviderId',
+  idempotencyKey: 'idempotencyKey',
+  scheduledFor: 'scheduledFor',
+  approvalRequired: 'approvalRequired',
+  approvedAt: 'approvedAt',
+  approvedBy: 'approvedBy',
+  rejectedAt: 'rejectedAt',
+  rejectedBy: 'rejectedBy',
+  approvalReason: 'approvalReason',
+  executedAt: 'executedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type RecoveryActionScalarFieldEnum = (typeof RecoveryActionScalarFieldEnum)[keyof typeof RecoveryActionScalarFieldEnum]
@@ -189,6 +220,11 @@ export const AuditLogScalarFieldEnum = {
   entityId: 'entityId',
   action: 'action',
   metadata: 'metadata',
+  actorType: 'actorType',
+  actorId: 'actorId',
+  source: 'source',
+  previousState: 'previousState',
+  newState: 'newState',
   createdAt: 'createdAt'
 } as const
 
@@ -199,7 +235,14 @@ export const WebhookEventScalarFieldEnum = {
   id: 'id',
   eventId: 'eventId',
   eventType: 'eventType',
+  provider: 'provider',
+  payload: 'payload',
   processed: 'processed',
+  status: 'status',
+  processingAttempts: 'processingAttempts',
+  lastError: 'lastError',
+  nextRetryAt: 'nextRetryAt',
+  lockedAt: 'lockedAt',
   receivedAt: 'receivedAt',
   processedAt: 'processedAt'
 } as const

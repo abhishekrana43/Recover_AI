@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.ts"
-import type * as Prisma from "../internal/prismaNamespace.ts"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model RecoveryAction
@@ -20,8 +20,18 @@ export type RecoveryActionModel = runtime.Types.Result.DefaultSelection<Prisma.$
 
 export type AggregateRecoveryAction = {
   _count: RecoveryActionCountAggregateOutputType | null
+  _avg: RecoveryActionAvgAggregateOutputType | null
+  _sum: RecoveryActionSumAggregateOutputType | null
   _min: RecoveryActionMinAggregateOutputType | null
   _max: RecoveryActionMaxAggregateOutputType | null
+}
+
+export type RecoveryActionAvgAggregateOutputType = {
+  retryCount: number | null
+}
+
+export type RecoveryActionSumAggregateOutputType = {
+  retryCount: number | null
 }
 
 export type RecoveryActionMinAggregateOutputType = {
@@ -29,8 +39,20 @@ export type RecoveryActionMinAggregateOutputType = {
   recoveryCaseId: string | null
   type: $Enums.RecoveryActionType | null
   status: $Enums.ActionStatus | null
+  error: string | null
+  retryCount: number | null
+  externalProviderId: string | null
+  idempotencyKey: string | null
+  scheduledFor: Date | null
+  approvalRequired: boolean | null
+  approvedAt: Date | null
+  approvedBy: string | null
+  rejectedAt: Date | null
+  rejectedBy: string | null
+  approvalReason: string | null
   executedAt: Date | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type RecoveryActionMaxAggregateOutputType = {
@@ -38,8 +60,20 @@ export type RecoveryActionMaxAggregateOutputType = {
   recoveryCaseId: string | null
   type: $Enums.RecoveryActionType | null
   status: $Enums.ActionStatus | null
+  error: string | null
+  retryCount: number | null
+  externalProviderId: string | null
+  idempotencyKey: string | null
+  scheduledFor: Date | null
+  approvalRequired: boolean | null
+  approvedAt: Date | null
+  approvedBy: string | null
+  rejectedAt: Date | null
+  rejectedBy: string | null
+  approvalReason: string | null
   executedAt: Date | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type RecoveryActionCountAggregateOutputType = {
@@ -47,20 +81,53 @@ export type RecoveryActionCountAggregateOutputType = {
   recoveryCaseId: number
   type: number
   status: number
-  executedAt: number
+  payload: number
   result: number
+  error: number
+  retryCount: number
+  externalProviderId: number
+  idempotencyKey: number
+  scheduledFor: number
+  approvalRequired: number
+  approvedAt: number
+  approvedBy: number
+  rejectedAt: number
+  rejectedBy: number
+  approvalReason: number
+  executedAt: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
+
+export type RecoveryActionAvgAggregateInputType = {
+  retryCount?: true
+}
+
+export type RecoveryActionSumAggregateInputType = {
+  retryCount?: true
+}
 
 export type RecoveryActionMinAggregateInputType = {
   id?: true
   recoveryCaseId?: true
   type?: true
   status?: true
+  error?: true
+  retryCount?: true
+  externalProviderId?: true
+  idempotencyKey?: true
+  scheduledFor?: true
+  approvalRequired?: true
+  approvedAt?: true
+  approvedBy?: true
+  rejectedAt?: true
+  rejectedBy?: true
+  approvalReason?: true
   executedAt?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type RecoveryActionMaxAggregateInputType = {
@@ -68,8 +135,20 @@ export type RecoveryActionMaxAggregateInputType = {
   recoveryCaseId?: true
   type?: true
   status?: true
+  error?: true
+  retryCount?: true
+  externalProviderId?: true
+  idempotencyKey?: true
+  scheduledFor?: true
+  approvalRequired?: true
+  approvedAt?: true
+  approvedBy?: true
+  rejectedAt?: true
+  rejectedBy?: true
+  approvalReason?: true
   executedAt?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type RecoveryActionCountAggregateInputType = {
@@ -77,9 +156,22 @@ export type RecoveryActionCountAggregateInputType = {
   recoveryCaseId?: true
   type?: true
   status?: true
-  executedAt?: true
+  payload?: true
   result?: true
+  error?: true
+  retryCount?: true
+  externalProviderId?: true
+  idempotencyKey?: true
+  scheduledFor?: true
+  approvalRequired?: true
+  approvedAt?: true
+  approvedBy?: true
+  rejectedAt?: true
+  rejectedBy?: true
+  approvalReason?: true
+  executedAt?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -121,6 +213,18 @@ export type RecoveryActionAggregateArgs<ExtArgs extends runtime.Types.Extensions
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: RecoveryActionAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: RecoveryActionSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: RecoveryActionMinAggregateInputType
@@ -151,6 +255,8 @@ export type RecoveryActionGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   _count?: RecoveryActionCountAggregateInputType | true
+  _avg?: RecoveryActionAvgAggregateInputType
+  _sum?: RecoveryActionSumAggregateInputType
   _min?: RecoveryActionMinAggregateInputType
   _max?: RecoveryActionMaxAggregateInputType
 }
@@ -160,10 +266,25 @@ export type RecoveryActionGroupByOutputType = {
   recoveryCaseId: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt: Date | null
+  payload: runtime.JsonValue | null
   result: runtime.JsonValue | null
+  error: string | null
+  retryCount: number
+  externalProviderId: string | null
+  idempotencyKey: string | null
+  scheduledFor: Date | null
+  approvalRequired: boolean
+  approvedAt: Date | null
+  approvedBy: string | null
+  rejectedAt: Date | null
+  rejectedBy: string | null
+  approvalReason: string | null
+  executedAt: Date | null
   createdAt: Date
+  updatedAt: Date
   _count: RecoveryActionCountAggregateOutputType | null
+  _avg: RecoveryActionAvgAggregateOutputType | null
+  _sum: RecoveryActionSumAggregateOutputType | null
   _min: RecoveryActionMinAggregateOutputType | null
   _max: RecoveryActionMaxAggregateOutputType | null
 }
@@ -191,11 +312,24 @@ export type RecoveryActionWhereInput = {
   recoveryCaseId?: Prisma.StringFilter<"RecoveryAction"> | string
   type?: Prisma.EnumRecoveryActionTypeFilter<"RecoveryAction"> | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFilter<"RecoveryAction"> | $Enums.ActionStatus
-  executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  payload?: Prisma.JsonNullableFilter<"RecoveryAction">
   result?: Prisma.JsonNullableFilter<"RecoveryAction">
+  error?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  retryCount?: Prisma.IntFilter<"RecoveryAction"> | number
+  externalProviderId?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  idempotencyKey?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  scheduledFor?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  approvalRequired?: Prisma.BoolFilter<"RecoveryAction"> | boolean
+  approvedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  approvedBy?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  rejectedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  rejectedBy?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  approvalReason?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
-  recoveryCase?: Prisma.XOR<Prisma.RecoveryCaseScalarRelationFilter, Prisma.RecoveryCaseWhereInput>
+  updatedAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
   policyDecision?: Prisma.XOR<Prisma.PolicyDecisionNullableScalarRelationFilter, Prisma.PolicyDecisionWhereInput> | null
+  recoveryCase?: Prisma.XOR<Prisma.RecoveryCaseScalarRelationFilter, Prisma.RecoveryCaseWhereInput>
 }
 
 export type RecoveryActionOrderByWithRelationInput = {
@@ -203,39 +337,80 @@ export type RecoveryActionOrderByWithRelationInput = {
   recoveryCaseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  executedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  payload?: Prisma.SortOrderInput | Prisma.SortOrder
   result?: Prisma.SortOrderInput | Prisma.SortOrder
+  error?: Prisma.SortOrderInput | Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  externalProviderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  idempotencyKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  scheduledFor?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvalRequired?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvalReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  executedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  recoveryCase?: Prisma.RecoveryCaseOrderByWithRelationInput
+  updatedAt?: Prisma.SortOrder
   policyDecision?: Prisma.PolicyDecisionOrderByWithRelationInput
+  recoveryCase?: Prisma.RecoveryCaseOrderByWithRelationInput
 }
 
 export type RecoveryActionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  idempotencyKey?: string
   AND?: Prisma.RecoveryActionWhereInput | Prisma.RecoveryActionWhereInput[]
   OR?: Prisma.RecoveryActionWhereInput[]
   NOT?: Prisma.RecoveryActionWhereInput | Prisma.RecoveryActionWhereInput[]
   recoveryCaseId?: Prisma.StringFilter<"RecoveryAction"> | string
   type?: Prisma.EnumRecoveryActionTypeFilter<"RecoveryAction"> | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFilter<"RecoveryAction"> | $Enums.ActionStatus
-  executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  payload?: Prisma.JsonNullableFilter<"RecoveryAction">
   result?: Prisma.JsonNullableFilter<"RecoveryAction">
+  error?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  retryCount?: Prisma.IntFilter<"RecoveryAction"> | number
+  externalProviderId?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  scheduledFor?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  approvalRequired?: Prisma.BoolFilter<"RecoveryAction"> | boolean
+  approvedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  approvedBy?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  rejectedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  rejectedBy?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  approvalReason?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
-  recoveryCase?: Prisma.XOR<Prisma.RecoveryCaseScalarRelationFilter, Prisma.RecoveryCaseWhereInput>
+  updatedAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
   policyDecision?: Prisma.XOR<Prisma.PolicyDecisionNullableScalarRelationFilter, Prisma.PolicyDecisionWhereInput> | null
-}, "id">
+  recoveryCase?: Prisma.XOR<Prisma.RecoveryCaseScalarRelationFilter, Prisma.RecoveryCaseWhereInput>
+}, "id" | "idempotencyKey">
 
 export type RecoveryActionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   recoveryCaseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  executedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  payload?: Prisma.SortOrderInput | Prisma.SortOrder
   result?: Prisma.SortOrderInput | Prisma.SortOrder
+  error?: Prisma.SortOrderInput | Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  externalProviderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  idempotencyKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  scheduledFor?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvalRequired?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvalReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  executedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.RecoveryActionCountOrderByAggregateInput
+  _avg?: Prisma.RecoveryActionAvgOrderByAggregateInput
   _max?: Prisma.RecoveryActionMaxOrderByAggregateInput
   _min?: Prisma.RecoveryActionMinOrderByAggregateInput
+  _sum?: Prisma.RecoveryActionSumOrderByAggregateInput
 }
 
 export type RecoveryActionScalarWhereWithAggregatesInput = {
@@ -246,20 +421,46 @@ export type RecoveryActionScalarWhereWithAggregatesInput = {
   recoveryCaseId?: Prisma.StringWithAggregatesFilter<"RecoveryAction"> | string
   type?: Prisma.EnumRecoveryActionTypeWithAggregatesFilter<"RecoveryAction"> | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusWithAggregatesFilter<"RecoveryAction"> | $Enums.ActionStatus
-  executedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"RecoveryAction"> | Date | string | null
+  payload?: Prisma.JsonNullableWithAggregatesFilter<"RecoveryAction">
   result?: Prisma.JsonNullableWithAggregatesFilter<"RecoveryAction">
+  error?: Prisma.StringNullableWithAggregatesFilter<"RecoveryAction"> | string | null
+  retryCount?: Prisma.IntWithAggregatesFilter<"RecoveryAction"> | number
+  externalProviderId?: Prisma.StringNullableWithAggregatesFilter<"RecoveryAction"> | string | null
+  idempotencyKey?: Prisma.StringNullableWithAggregatesFilter<"RecoveryAction"> | string | null
+  scheduledFor?: Prisma.DateTimeNullableWithAggregatesFilter<"RecoveryAction"> | Date | string | null
+  approvalRequired?: Prisma.BoolWithAggregatesFilter<"RecoveryAction"> | boolean
+  approvedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"RecoveryAction"> | Date | string | null
+  approvedBy?: Prisma.StringNullableWithAggregatesFilter<"RecoveryAction"> | string | null
+  rejectedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"RecoveryAction"> | Date | string | null
+  rejectedBy?: Prisma.StringNullableWithAggregatesFilter<"RecoveryAction"> | string | null
+  approvalReason?: Prisma.StringNullableWithAggregatesFilter<"RecoveryAction"> | string | null
+  executedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"RecoveryAction"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RecoveryAction"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RecoveryAction"> | Date | string
 }
 
 export type RecoveryActionCreateInput = {
   id?: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt?: Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: string | null
+  retryCount?: number
+  externalProviderId?: string | null
+  idempotencyKey?: string | null
+  scheduledFor?: Date | string | null
+  approvalRequired?: boolean
+  approvedAt?: Date | string | null
+  approvedBy?: string | null
+  rejectedAt?: Date | string | null
+  rejectedBy?: string | null
+  approvalReason?: string | null
+  executedAt?: Date | string | null
   createdAt?: Date | string
-  recoveryCase: Prisma.RecoveryCaseCreateNestedOneWithoutActionsInput
+  updatedAt?: Date | string
   policyDecision?: Prisma.PolicyDecisionCreateNestedOneWithoutRecoveryActionInput
+  recoveryCase: Prisma.RecoveryCaseCreateNestedOneWithoutActionsInput
 }
 
 export type RecoveryActionUncheckedCreateInput = {
@@ -267,9 +468,22 @@ export type RecoveryActionUncheckedCreateInput = {
   recoveryCaseId: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt?: Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: string | null
+  retryCount?: number
+  externalProviderId?: string | null
+  idempotencyKey?: string | null
+  scheduledFor?: Date | string | null
+  approvalRequired?: boolean
+  approvedAt?: Date | string | null
+  approvedBy?: string | null
+  rejectedAt?: Date | string | null
+  rejectedBy?: string | null
+  approvalReason?: string | null
+  executedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   policyDecision?: Prisma.PolicyDecisionUncheckedCreateNestedOneWithoutRecoveryActionInput
 }
 
@@ -277,11 +491,24 @@ export type RecoveryActionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recoveryCase?: Prisma.RecoveryCaseUpdateOneRequiredWithoutActionsNestedInput
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   policyDecision?: Prisma.PolicyDecisionUpdateOneWithoutRecoveryActionNestedInput
+  recoveryCase?: Prisma.RecoveryCaseUpdateOneRequiredWithoutActionsNestedInput
 }
 
 export type RecoveryActionUncheckedUpdateInput = {
@@ -289,9 +516,22 @@ export type RecoveryActionUncheckedUpdateInput = {
   recoveryCaseId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   policyDecision?: Prisma.PolicyDecisionUncheckedUpdateOneWithoutRecoveryActionNestedInput
 }
 
@@ -300,18 +540,44 @@ export type RecoveryActionCreateManyInput = {
   recoveryCaseId: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt?: Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: string | null
+  retryCount?: number
+  externalProviderId?: string | null
+  idempotencyKey?: string | null
+  scheduledFor?: Date | string | null
+  approvalRequired?: boolean
+  approvedAt?: Date | string | null
+  approvedBy?: string | null
+  rejectedAt?: Date | string | null
+  rejectedBy?: string | null
+  approvalReason?: string | null
+  executedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type RecoveryActionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RecoveryActionUncheckedUpdateManyInput = {
@@ -319,9 +585,22 @@ export type RecoveryActionUncheckedUpdateManyInput = {
   recoveryCaseId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RecoveryActionListRelationFilter = {
@@ -339,9 +618,26 @@ export type RecoveryActionCountOrderByAggregateInput = {
   recoveryCaseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  executedAt?: Prisma.SortOrder
+  payload?: Prisma.SortOrder
   result?: Prisma.SortOrder
+  error?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  externalProviderId?: Prisma.SortOrder
+  idempotencyKey?: Prisma.SortOrder
+  scheduledFor?: Prisma.SortOrder
+  approvalRequired?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
+  approvedBy?: Prisma.SortOrder
+  rejectedAt?: Prisma.SortOrder
+  rejectedBy?: Prisma.SortOrder
+  approvalReason?: Prisma.SortOrder
+  executedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type RecoveryActionAvgOrderByAggregateInput = {
+  retryCount?: Prisma.SortOrder
 }
 
 export type RecoveryActionMaxOrderByAggregateInput = {
@@ -349,8 +645,20 @@ export type RecoveryActionMaxOrderByAggregateInput = {
   recoveryCaseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  error?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  externalProviderId?: Prisma.SortOrder
+  idempotencyKey?: Prisma.SortOrder
+  scheduledFor?: Prisma.SortOrder
+  approvalRequired?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
+  approvedBy?: Prisma.SortOrder
+  rejectedAt?: Prisma.SortOrder
+  rejectedBy?: Prisma.SortOrder
+  approvalReason?: Prisma.SortOrder
   executedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type RecoveryActionMinOrderByAggregateInput = {
@@ -358,8 +666,24 @@ export type RecoveryActionMinOrderByAggregateInput = {
   recoveryCaseId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  error?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  externalProviderId?: Prisma.SortOrder
+  idempotencyKey?: Prisma.SortOrder
+  scheduledFor?: Prisma.SortOrder
+  approvalRequired?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
+  approvedBy?: Prisma.SortOrder
+  rejectedAt?: Prisma.SortOrder
+  rejectedBy?: Prisma.SortOrder
+  approvalReason?: Prisma.SortOrder
   executedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type RecoveryActionSumOrderByAggregateInput = {
+  retryCount?: Prisma.SortOrder
 }
 
 export type RecoveryActionScalarRelationFilter = {
@@ -409,8 +733,16 @@ export type RecoveryActionUncheckedUpdateManyWithoutRecoveryCaseNestedInput = {
   deleteMany?: Prisma.RecoveryActionScalarWhereInput | Prisma.RecoveryActionScalarWhereInput[]
 }
 
+export type EnumRecoveryActionTypeFieldUpdateOperationsInput = {
+  set?: $Enums.RecoveryActionType
+}
+
 export type EnumActionStatusFieldUpdateOperationsInput = {
   set?: $Enums.ActionStatus
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type RecoveryActionCreateNestedOneWithoutPolicyDecisionInput = {
@@ -431,9 +763,22 @@ export type RecoveryActionCreateWithoutRecoveryCaseInput = {
   id?: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt?: Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: string | null
+  retryCount?: number
+  externalProviderId?: string | null
+  idempotencyKey?: string | null
+  scheduledFor?: Date | string | null
+  approvalRequired?: boolean
+  approvedAt?: Date | string | null
+  approvedBy?: string | null
+  rejectedAt?: Date | string | null
+  rejectedBy?: string | null
+  approvalReason?: string | null
+  executedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   policyDecision?: Prisma.PolicyDecisionCreateNestedOneWithoutRecoveryActionInput
 }
 
@@ -441,9 +786,22 @@ export type RecoveryActionUncheckedCreateWithoutRecoveryCaseInput = {
   id?: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt?: Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: string | null
+  retryCount?: number
+  externalProviderId?: string | null
+  idempotencyKey?: string | null
+  scheduledFor?: Date | string | null
+  approvalRequired?: boolean
+  approvedAt?: Date | string | null
+  approvedBy?: string | null
+  rejectedAt?: Date | string | null
+  rejectedBy?: string | null
+  approvalReason?: string | null
+  executedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   policyDecision?: Prisma.PolicyDecisionUncheckedCreateNestedOneWithoutRecoveryActionInput
 }
 
@@ -481,18 +839,44 @@ export type RecoveryActionScalarWhereInput = {
   recoveryCaseId?: Prisma.StringFilter<"RecoveryAction"> | string
   type?: Prisma.EnumRecoveryActionTypeFilter<"RecoveryAction"> | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFilter<"RecoveryAction"> | $Enums.ActionStatus
-  executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  payload?: Prisma.JsonNullableFilter<"RecoveryAction">
   result?: Prisma.JsonNullableFilter<"RecoveryAction">
+  error?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  retryCount?: Prisma.IntFilter<"RecoveryAction"> | number
+  externalProviderId?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  idempotencyKey?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  scheduledFor?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  approvalRequired?: Prisma.BoolFilter<"RecoveryAction"> | boolean
+  approvedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  approvedBy?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  rejectedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
+  rejectedBy?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  approvalReason?: Prisma.StringNullableFilter<"RecoveryAction"> | string | null
+  executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
 }
 
 export type RecoveryActionCreateWithoutPolicyDecisionInput = {
   id?: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt?: Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: string | null
+  retryCount?: number
+  externalProviderId?: string | null
+  idempotencyKey?: string | null
+  scheduledFor?: Date | string | null
+  approvalRequired?: boolean
+  approvedAt?: Date | string | null
+  approvedBy?: string | null
+  rejectedAt?: Date | string | null
+  rejectedBy?: string | null
+  approvalReason?: string | null
+  executedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   recoveryCase: Prisma.RecoveryCaseCreateNestedOneWithoutActionsInput
 }
 
@@ -501,9 +885,22 @@ export type RecoveryActionUncheckedCreateWithoutPolicyDecisionInput = {
   recoveryCaseId: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt?: Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: string | null
+  retryCount?: number
+  externalProviderId?: string | null
+  idempotencyKey?: string | null
+  scheduledFor?: Date | string | null
+  approvalRequired?: boolean
+  approvedAt?: Date | string | null
+  approvedBy?: string | null
+  rejectedAt?: Date | string | null
+  rejectedBy?: string | null
+  approvalReason?: string | null
+  executedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type RecoveryActionCreateOrConnectWithoutPolicyDecisionInput = {
@@ -526,9 +923,22 @@ export type RecoveryActionUpdateWithoutPolicyDecisionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recoveryCase?: Prisma.RecoveryCaseUpdateOneRequiredWithoutActionsNestedInput
 }
 
@@ -537,27 +947,66 @@ export type RecoveryActionUncheckedUpdateWithoutPolicyDecisionInput = {
   recoveryCaseId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RecoveryActionCreateManyRecoveryCaseInput = {
   id?: string
   type: $Enums.RecoveryActionType
   status: $Enums.ActionStatus
-  executedAt?: Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: string | null
+  retryCount?: number
+  externalProviderId?: string | null
+  idempotencyKey?: string | null
+  scheduledFor?: Date | string | null
+  approvalRequired?: boolean
+  approvedAt?: Date | string | null
+  approvedBy?: string | null
+  rejectedAt?: Date | string | null
+  rejectedBy?: string | null
+  approvalReason?: string | null
+  executedAt?: Date | string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type RecoveryActionUpdateWithoutRecoveryCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   policyDecision?: Prisma.PolicyDecisionUpdateOneWithoutRecoveryActionNestedInput
 }
 
@@ -565,9 +1014,22 @@ export type RecoveryActionUncheckedUpdateWithoutRecoveryCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   policyDecision?: Prisma.PolicyDecisionUncheckedUpdateOneWithoutRecoveryActionNestedInput
 }
 
@@ -575,9 +1037,22 @@ export type RecoveryActionUncheckedUpdateManyWithoutRecoveryCaseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumRecoveryActionTypeFieldUpdateOperationsInput | $Enums.RecoveryActionType
   status?: Prisma.EnumActionStatusFieldUpdateOperationsInput | $Enums.ActionStatus
-  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  payload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  externalProviderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotencyKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvalRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rejectedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvalReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -587,11 +1062,24 @@ export type RecoveryActionSelect<ExtArgs extends runtime.Types.Extensions.Intern
   recoveryCaseId?: boolean
   type?: boolean
   status?: boolean
-  executedAt?: boolean
+  payload?: boolean
   result?: boolean
+  error?: boolean
+  retryCount?: boolean
+  externalProviderId?: boolean
+  idempotencyKey?: boolean
+  scheduledFor?: boolean
+  approvalRequired?: boolean
+  approvedAt?: boolean
+  approvedBy?: boolean
+  rejectedAt?: boolean
+  rejectedBy?: boolean
+  approvalReason?: boolean
+  executedAt?: boolean
   createdAt?: boolean
-  recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
+  updatedAt?: boolean
   policyDecision?: boolean | Prisma.RecoveryAction$policyDecisionArgs<ExtArgs>
+  recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recoveryAction"]>
 
 export type RecoveryActionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -599,9 +1087,22 @@ export type RecoveryActionSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   recoveryCaseId?: boolean
   type?: boolean
   status?: boolean
-  executedAt?: boolean
+  payload?: boolean
   result?: boolean
+  error?: boolean
+  retryCount?: boolean
+  externalProviderId?: boolean
+  idempotencyKey?: boolean
+  scheduledFor?: boolean
+  approvalRequired?: boolean
+  approvedAt?: boolean
+  approvedBy?: boolean
+  rejectedAt?: boolean
+  rejectedBy?: boolean
+  approvalReason?: boolean
+  executedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recoveryAction"]>
 
@@ -610,9 +1111,22 @@ export type RecoveryActionSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   recoveryCaseId?: boolean
   type?: boolean
   status?: boolean
-  executedAt?: boolean
+  payload?: boolean
   result?: boolean
+  error?: boolean
+  retryCount?: boolean
+  externalProviderId?: boolean
+  idempotencyKey?: boolean
+  scheduledFor?: boolean
+  approvalRequired?: boolean
+  approvedAt?: boolean
+  approvedBy?: boolean
+  rejectedAt?: boolean
+  rejectedBy?: boolean
+  approvalReason?: boolean
+  executedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recoveryAction"]>
 
@@ -621,15 +1135,28 @@ export type RecoveryActionSelectScalar = {
   recoveryCaseId?: boolean
   type?: boolean
   status?: boolean
-  executedAt?: boolean
+  payload?: boolean
   result?: boolean
+  error?: boolean
+  retryCount?: boolean
+  externalProviderId?: boolean
+  idempotencyKey?: boolean
+  scheduledFor?: boolean
+  approvalRequired?: boolean
+  approvedAt?: boolean
+  approvedBy?: boolean
+  rejectedAt?: boolean
+  rejectedBy?: boolean
+  approvalReason?: boolean
+  executedAt?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type RecoveryActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "recoveryCaseId" | "type" | "status" | "executedAt" | "result" | "createdAt", ExtArgs["result"]["recoveryAction"]>
+export type RecoveryActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "recoveryCaseId" | "type" | "status" | "payload" | "result" | "error" | "retryCount" | "externalProviderId" | "idempotencyKey" | "scheduledFor" | "approvalRequired" | "approvedAt" | "approvedBy" | "rejectedAt" | "rejectedBy" | "approvalReason" | "executedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["recoveryAction"]>
 export type RecoveryActionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
   policyDecision?: boolean | Prisma.RecoveryAction$policyDecisionArgs<ExtArgs>
+  recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }
 export type RecoveryActionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
@@ -641,17 +1168,30 @@ export type RecoveryActionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Typ
 export type $RecoveryActionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RecoveryAction"
   objects: {
-    recoveryCase: Prisma.$RecoveryCasePayload<ExtArgs>
     policyDecision: Prisma.$PolicyDecisionPayload<ExtArgs> | null
+    recoveryCase: Prisma.$RecoveryCasePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     recoveryCaseId: string
     type: $Enums.RecoveryActionType
     status: $Enums.ActionStatus
-    executedAt: Date | null
+    payload: runtime.JsonValue | null
     result: runtime.JsonValue | null
+    error: string | null
+    retryCount: number
+    externalProviderId: string | null
+    idempotencyKey: string | null
+    scheduledFor: Date | null
+    approvalRequired: boolean
+    approvedAt: Date | null
+    approvedBy: string | null
+    rejectedAt: Date | null
+    rejectedBy: string | null
+    approvalReason: string | null
+    executedAt: Date | null
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["recoveryAction"]>
   composites: {}
 }
@@ -1046,8 +1586,8 @@ readonly fields: RecoveryActionFieldRefs;
  */
 export interface Prisma__RecoveryActionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  recoveryCase<T extends Prisma.RecoveryCaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecoveryCaseDefaultArgs<ExtArgs>>): Prisma.Prisma__RecoveryCaseClient<runtime.Types.Result.GetResult<Prisma.$RecoveryCasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   policyDecision<T extends Prisma.RecoveryAction$policyDecisionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecoveryAction$policyDecisionArgs<ExtArgs>>): Prisma.Prisma__PolicyDecisionClient<runtime.Types.Result.GetResult<Prisma.$PolicyDecisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  recoveryCase<T extends Prisma.RecoveryCaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecoveryCaseDefaultArgs<ExtArgs>>): Prisma.Prisma__RecoveryCaseClient<runtime.Types.Result.GetResult<Prisma.$RecoveryCasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1081,9 +1621,22 @@ export interface RecoveryActionFieldRefs {
   readonly recoveryCaseId: Prisma.FieldRef<"RecoveryAction", 'String'>
   readonly type: Prisma.FieldRef<"RecoveryAction", 'RecoveryActionType'>
   readonly status: Prisma.FieldRef<"RecoveryAction", 'ActionStatus'>
-  readonly executedAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
+  readonly payload: Prisma.FieldRef<"RecoveryAction", 'Json'>
   readonly result: Prisma.FieldRef<"RecoveryAction", 'Json'>
+  readonly error: Prisma.FieldRef<"RecoveryAction", 'String'>
+  readonly retryCount: Prisma.FieldRef<"RecoveryAction", 'Int'>
+  readonly externalProviderId: Prisma.FieldRef<"RecoveryAction", 'String'>
+  readonly idempotencyKey: Prisma.FieldRef<"RecoveryAction", 'String'>
+  readonly scheduledFor: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
+  readonly approvalRequired: Prisma.FieldRef<"RecoveryAction", 'Boolean'>
+  readonly approvedAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
+  readonly approvedBy: Prisma.FieldRef<"RecoveryAction", 'String'>
+  readonly rejectedAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
+  readonly rejectedBy: Prisma.FieldRef<"RecoveryAction", 'String'>
+  readonly approvalReason: Prisma.FieldRef<"RecoveryAction", 'String'>
+  readonly executedAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
 }
     
 
