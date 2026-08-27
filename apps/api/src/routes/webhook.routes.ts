@@ -1,6 +1,6 @@
 import { Router, type Request, type Response } from "express";
 import crypto from "crypto";
-
+import { dispatchWebhookEvent } from "../events/event.dispatcher.js";
 import { prisma } from "@recover-ai/database";
 
 const router = Router();
@@ -29,12 +29,7 @@ router.post(
         });
       }
 
-      // --------------------------------------------------
-      // 1. Get Razorpay signature
-      // --------------------------------------------------
-
-      const signature =
-        req.headers["x-razorpay-signature"];
+      const signature = req.headers["x-razorpay-signature"];
 
       if (typeof signature !== "string") {
         return res.status(400).json({
@@ -43,34 +38,18 @@ router.post(
         });
       }
 
-      // --------------------------------------------------
-      // 2. Get raw request body
-      // --------------------------------------------------
-
       const rawBody = req.body as Buffer;
-
-      // --------------------------------------------------
-      // 3. Generate expected signature
-      // --------------------------------------------------
 
       const expectedSignature = crypto
         .createHmac("sha256", webhookSecret)
         .update(rawBody)
         .digest("hex");
 
-      // --------------------------------------------------
-      // 4. Compare signatures safely
-      // --------------------------------------------------
-
-      const receivedSignature =
-        Buffer.from(signature);
-
-      const calculatedSignature =
-        Buffer.from(expectedSignature);
+      const receivedSignature = Buffer.from(signature);
+      const calculatedSignature = Buffer.from(expectedSignature);
 
       const isValid =
-        receivedSignature.length ===
-          calculatedSignature.length &&
+        receivedSignature.length === calculatedSignature.length &&
         crypto.timingSafeEqual(
           receivedSignature,
           calculatedSignature
@@ -83,12 +62,7 @@ router.post(
         });
       }
 
-      // --------------------------------------------------
-      // 5. Get Razorpay event ID
-      // --------------------------------------------------
-
-      const eventId =
-        req.headers["x-razorpay-event-id"];
+      const eventId = req.headers["x-razorpay-event-id"];
 
       if (typeof eventId !== "string") {
         return res.status(400).json({
@@ -97,16 +71,10 @@ router.post(
         });
       }
 
-      // --------------------------------------------------
-      // 6. Parse webhook payload
-      // --------------------------------------------------
-
       let payload: unknown;
 
       try {
-        payload = JSON.parse(
-          rawBody.toString("utf8")
-        );
+        payload = JSON.parse(rawBody.toString("utf8"));
       } catch {
         return res.status(400).json({
           success: false,
@@ -128,58 +96,128 @@ router.post(
         });
       }
 
-      // --------------------------------------------------
-      // 7. Check for duplicate webhook
-      // --------------------------------------------------
+      let webhookEvent;
 
       try {
-        await prisma.webhookEvent.create({
+        webhookEvent = await prisma.webhookEvent.create({
           data: {
             eventId,
             eventType,
             provider: "RAZORPAY",
-            processed: true,
-            status: "PROCESSED",
-            processedAt: new Date(),
+            payload: payload as object,
+            processed: false,
+            status: "RECEIVED",
           },
         });
       } catch (error) {
         if (isUniqueConstraintError(error)) {
-          console.log(
-            `Duplicate Razorpay webhook ignored: ${eventId}`
-          );
-
-          return res.status(200).json({
-            success: true,
-            duplicate: true,
+          const existingEvent = await prisma.webhookEvent.findUnique({
+            where: {
+              eventId,
+            },
           });
-        }
 
-        throw error;
+          if (!existingEvent) {
+            throw error;
+          }
+
+          if ( existingEvent.status === "PROCESSED" ||
+               existingEvent.status === "PROCESSING") {
+            console.log(
+              `Duplicate processed webhook ignored: ${eventId}`
+            );
+
+            return res.status(200).json({
+              success: true,
+              duplicate: true,
+              eventId,
+            });
+          }
+
+          webhookEvent = existingEvent;
+        } else {
+          throw error;
+        }
       }
 
-      // --------------------------------------------------
-      // 8. Log verified event
-      // --------------------------------------------------
+      await prisma.webhookEvent.update({
+        where: {
+          id: webhookEvent.id,
+        },
+        data: {
+          status: "PROCESSING",
+          processingAttempts: {
+            increment: 1,
+          },
+          lastError: null,
+        },
+      });
 
-      console.log(
-        "Verified Razorpay webhook:",
-        {
-          eventId,
-          eventType,
-        }
-      );
-
-      // --------------------------------------------------
-      // 9. Temporary response
-      // --------------------------------------------------
-
-      return res.status(200).json({
-        success: true,
+      console.log("Processing Razorpay webhook:", {
         eventId,
         eventType,
       });
 
+      try {
+        await dispatchWebhookEvent(eventType, payload);
+
+        await prisma.webhookEvent.update({
+          where: {
+            id: webhookEvent.id,
+          },
+          data: {
+            status: "PROCESSED",
+            processed: true,
+            processedAt: new Date(),
+            lastError: null,
+          },
+        });
+
+        return res.status(200).json({
+          success: true,
+          eventId,
+          eventType,
+        });
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error
+            ? error.message
+            : "Unknown webhook processing error";
+
+        const attempts = webhookEvent.processingAttempts;
+
+const maxAttempts = 5;
+
+const shouldRetry = attempts < maxAttempts;
+
+await prisma.webhookEvent.update({
+  where: {
+    id: webhookEvent.id,
+  },
+  data: {
+    status: shouldRetry ? "RETRY_PENDING" : "FAILED",
+    processed: false,
+    lastError: errorMessage,
+    nextRetryAt: shouldRetry
+      ? new Date(Date.now() + Math.pow(2, attempts) * 1000)
+      : null,
+  },
+});
+
+        console.error(
+          "Razorpay webhook processing failed:",
+          {
+            eventId,
+            eventType,
+            error,
+          }
+        );
+
+        return res.status(500).json({
+          success: false,
+          message: "Webhook processing failed",
+        });
+      }
     } catch (error) {
       console.error(
         "Razorpay webhook error:",
