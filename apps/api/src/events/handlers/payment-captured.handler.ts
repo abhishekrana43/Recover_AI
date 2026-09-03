@@ -69,103 +69,128 @@ export async function handlePaymentCaptured(
     );
   }
 
-  const attempt = await prisma.paymentAttempt.findFirst({
-  where: { razorpayOrderId },
-  include: { payment: true },
-});
+await prisma.$transaction(async (tx) => {
+  const attempt =
+    await tx.paymentAttempt.findFirst({
+      where: {
+        razorpayOrderId,
+      },
+      include: {
+        payment: true,
+      },
+    });
 
-if (!attempt) {
-  throw new Error(
-    `Payment attempt not found for Razorpay order ${razorpayOrderId}`
-  );
-}
+  if (!attempt) {
+    throw new Error(
+      `Payment attempt not found for Razorpay order ${razorpayOrderId}`
+    );
+  }
 
-const payment = attempt.payment;
-const previousStatus = payment.status;
+  const payment = attempt.payment;
+  const previousStatus = payment.status;
 
-if (attempt.status === "CAPTURED") {
-  return;
-}
+  /*
+   * Idempotency
+   */
+  if (attempt.status === "CAPTURED") {
+    return;
+  }
 
-await prisma.paymentAttempt.update({
-  where: { id: attempt.id },
-  data: {
-    status: "CAPTURED",
-    razorpayPaymentId,
-  },
-});
-
-await prisma.payment.update({
-  where: { id: payment.id },
-  data: {
-    status: "CAPTURED",
-    failureReason: null,
-  },
-});
-
-const recoveryCase = await prisma.recoveryCase.findFirst({
-  where: {
-    paymentId: payment.id,
-    status: {
-      in: ["OPEN", "IN_PROGRESS", "ESCALATED"],
+  /*
+   * PaymentAttempt → CAPTURED
+   */
+  await tx.paymentAttempt.update({
+    where: {
+      id: attempt.id,
     },
-  },
-});
-
-if (recoveryCase) {
-  await prisma.recoveryCase.update({
-    where: { id: recoveryCase.id },
     data: {
-      status: "RECOVERED",
-      amountRecovered: payment.amount,
-      resolvedAt: new Date(),
-      closureReason: "PAYMENT_RECOVERED",
+      status: "CAPTURED",
+      razorpayPaymentId,
     },
   });
-}
 
-await prisma.auditLog.create({
-  data: {
-    merchantId: payment.merchantId,
-    entityType: "Payment",
-    entityId: payment.id,
-    action: "PAYMENT_CAPTURED",
-    source: "RAZORPAY_WEBHOOK",
-    previousState: { status: previousStatus },
-    newState: { status: "CAPTURED" },
-    metadata: {
-      razorpayPaymentId,
-      razorpayOrderId,
-      amount: amount ?? null,
-      recoveryCaseId: recoveryCase?.id ?? null,
+  /*
+   * Payment → CAPTURED
+   */
+  await tx.payment.update({
+    where: {
+      id: payment.id,
     },
-  },
-});
-
-await prisma.auditLog.create({
-  data: {
-    merchantId: payment.merchantId,
-    entityType: "Payment",
-    entityId: payment.id,
-    action: "PAYMENT_CAPTURED",
-    source: "RAZORPAY_WEBHOOK",
-    previousState: {
-      status: previousStatus,
-    },
-    newState: {
+    data: {
       status: "CAPTURED",
+      failureReason: null,
     },
-    metadata: {
-      razorpayPaymentId,
-      razorpayOrderId,
-      amount: amount ?? null,
-      recoveryCaseId:
-        recoveryCase?.id ?? null,
+  });
+
+  /*
+   * PromiseToPay → FULFILLED
+   */
+  await fulfillPromiseToPay(
+    payment.id,
+    tx
+  );
+
+  /*
+   * Find active recovery case
+   */
+  const recoveryCase =
+    await tx.recoveryCase.findFirst({
+      where: {
+        paymentId: payment.id,
+        status: {
+          in: [
+            "OPEN",
+            "IN_PROGRESS",
+            "ESCALATED",
+          ],
+        },
+      },
+    });
+
+  /*
+   * RecoveryCase → RECOVERED
+   */
+  if (recoveryCase) {
+    await tx.recoveryCase.update({
+      where: {
+        id: recoveryCase.id,
+      },
+      data: {
+        status: "RECOVERED",
+        amountRecovered: payment.amount,
+        resolvedAt: new Date(),
+        closureReason: "PAYMENT_RECOVERED",
+      },
+    });
+  }
+
+  /*
+   * Audit log
+   */
+  await tx.auditLog.create({
+    data: {
+      merchantId: payment.merchantId,
+      entityType: "Payment",
+      entityId: payment.id,
+      action: "PAYMENT_CAPTURED",
+      source: "RAZORPAY_WEBHOOK",
+
+      previousState: {
+        status: previousStatus,
+      },
+
+      newState: {
+        status: "CAPTURED",
+      },
+
+      metadata: {
+        razorpayPaymentId,
+        razorpayOrderId,
+        amount: amount ?? null,
+        recoveryCaseId:
+          recoveryCase?.id ?? null,
+      },
     },
-  },
+  });
 });
-
-await fulfillPromiseToPay(payment.id);
- 
 }
-

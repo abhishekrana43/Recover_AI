@@ -1,4 +1,5 @@
-import { prisma } from "@recover-ai/database";
+import { prisma, type Prisma } from "@recover-ai/database";
+
 
 export type CreatePromiseToPayInput = {
   recoveryCaseId: string;
@@ -103,32 +104,31 @@ export async function createPromiseToPay(
 }
 
 export async function fulfillPromiseToPay(
-  paymentId: string
+  paymentId: string,
+  tx: Prisma.TransactionClient = prisma
 ) {
-  return prisma.$transaction(async (tx) => {
-    const promise =
-      await tx.promiseToPay.findFirst({
-        where: {
-          paymentId,
-          status: "PENDING",
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
-
-    if (!promise) {
-      return null;
-    }
-
-    return tx.promiseToPay.update({
+  const promise =
+    await tx.promiseToPay.findFirst({
       where: {
-        id: promise.id,
+        paymentId,
+        status: "PENDING",
       },
-      data: {
-        status: "FULFILLED",
-        fulfilledAt: new Date(),
+      orderBy: {
+        createdAt: "desc",
       },
     });
+
+  if (!promise) {
+    return null;
+  }
+
+  return tx.promiseToPay.update({
+    where: {
+      id: promise.id,
+    },
+    data: {
+      status: "FULFILLED",
+      fulfilledAt: new Date(),
+    },
   });
 }

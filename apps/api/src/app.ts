@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
 import webhookRoutes from "./routes/webhook.routes.js"
-
+import voiceAgentRoutes from "./routes/voice-agent.routes.js";
 import { prisma } from "@recover-ai/database";
+import recoveryRoutes from "./routes/recovery.routes.js";
 
 const app = express();
 
@@ -21,16 +22,36 @@ app.use(cors({
   },
 }));
 
-app.use("/api/webhooks", express.raw({
-  type: "application/json",
-  limit: process.env.WEBHOOK_BODY_LIMIT || "1mb",
-}));
+app.use(
+  "/api/webhooks/razorpay",
+  express.raw({
+    type: "application/json",
+    limit:
+      process.env.WEBHOOK_BODY_LIMIT || "1mb",
+  })
+);
 
-
+app.use(
+  "/api/webhooks/voice",
+  express.raw({
+    type: "application/json",
+    limit:
+      process.env.WEBHOOK_BODY_LIMIT || "1mb",
+  })
+);
 
 app.use(express.json());
 
-app.use("/api/webhooks",  webhookRoutes);
+app.use("/api/webhooks", webhookRoutes);
+app.use(
+  "/api/voice-agent",
+  voiceAgentRoutes
+);
+
+app.use(
+  "/api/recovery",
+  recoveryRoutes
+);
 
 app.get("/health", (_req, res) => {
   res.json({

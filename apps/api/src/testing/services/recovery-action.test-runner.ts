@@ -1,4 +1,4 @@
-import { createRecoveryAction } from "./recovery-action.service.js";
+import { createRecoveryAction } from "../../services/recovery-action.service.js";
 
 const recoveryCaseId = process.argv[2];
 

@@ -18,7 +18,8 @@ export type RecoveryActionType =
   | "CREATE_PAYMENT_LINK"
   | "SEND_NOTIFICATION"
   | "WAIT"
-  | "ESCALATE";
+  | "ESCALATE"
+  | "VOICE_RECOVERY";
 
 export type ActionStatus =
   | "PENDING"
