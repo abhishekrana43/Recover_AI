@@ -60,7 +60,10 @@ export const ModelName = {
   RecoveryAction: 'RecoveryAction',
   PolicyDecision: 'PolicyDecision',
   AuditLog: 'AuditLog',
-  WebhookEvent: 'WebhookEvent'
+  WebhookEvent: 'WebhookEvent',
+  PromiseToPay: 'PromiseToPay',
+  VoiceCall: 'VoiceCall',
+  VoiceWebhookEvent: 'VoiceWebhookEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -125,6 +128,8 @@ export const PaymentAttemptScalarFieldEnum = {
   attemptNumber: 'attemptNumber',
   status: 'status',
   failureReason: 'failureReason',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
   attemptedAt: 'attemptedAt'
 } as const
 
@@ -196,7 +201,8 @@ export const RecoveryActionScalarFieldEnum = {
   approvalReason: 'approvalReason',
   executedAt: 'executedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  lockedAt: 'lockedAt'
 } as const
 
 export type RecoveryActionScalarFieldEnum = (typeof RecoveryActionScalarFieldEnum)[keyof typeof RecoveryActionScalarFieldEnum]
@@ -248,6 +254,63 @@ export const WebhookEventScalarFieldEnum = {
 } as const
 
 export type WebhookEventScalarFieldEnum = (typeof WebhookEventScalarFieldEnum)[keyof typeof WebhookEventScalarFieldEnum]
+
+
+export const PromiseToPayScalarFieldEnum = {
+  id: 'id',
+  recoveryCaseId: 'recoveryCaseId',
+  paymentId: 'paymentId',
+  amount: 'amount',
+  currency: 'currency',
+  promisedFor: 'promisedFor',
+  status: 'status',
+  source: 'source',
+  notes: 'notes',
+  fulfilledAt: 'fulfilledAt',
+  brokenAt: 'brokenAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PromiseToPayScalarFieldEnum = (typeof PromiseToPayScalarFieldEnum)[keyof typeof PromiseToPayScalarFieldEnum]
+
+
+export const VoiceCallScalarFieldEnum = {
+  id: 'id',
+  recoveryCaseId: 'recoveryCaseId',
+  provider: 'provider',
+  providerCallId: 'providerCallId',
+  status: 'status',
+  phoneNumber: 'phoneNumber',
+  startedAt: 'startedAt',
+  answeredAt: 'answeredAt',
+  completedAt: 'completedAt',
+  transcript: 'transcript',
+  outcome: 'outcome',
+  outcomeData: 'outcomeData',
+  failureReason: 'failureReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VoiceCallScalarFieldEnum = (typeof VoiceCallScalarFieldEnum)[keyof typeof VoiceCallScalarFieldEnum]
+
+
+export const VoiceWebhookEventScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  provider: 'provider',
+  providerCallId: 'providerCallId',
+  eventType: 'eventType',
+  payload: 'payload',
+  processed: 'processed',
+  status: 'status',
+  lastError: 'lastError',
+  receivedAt: 'receivedAt',
+  processedAt: 'processedAt'
+} as const
+
+export type VoiceWebhookEventScalarFieldEnum = (typeof VoiceWebhookEventScalarFieldEnum)[keyof typeof VoiceWebhookEventScalarFieldEnum]
 
 
 export const SortOrder = {

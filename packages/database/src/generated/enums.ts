@@ -37,7 +37,8 @@ export const RecoveryActionType = {
   CREATE_PAYMENT_LINK: 'CREATE_PAYMENT_LINK',
   SEND_NOTIFICATION: 'SEND_NOTIFICATION',
   WAIT: 'WAIT',
-  ESCALATE: 'ESCALATE'
+  ESCALATE: 'ESCALATE',
+  VOICE_RECOVERY: 'VOICE_RECOVERY'
 } as const
 
 export type RecoveryActionType = (typeof RecoveryActionType)[keyof typeof RecoveryActionType]
@@ -90,3 +91,46 @@ export const AgentExecutionStatus = {
 } as const
 
 export type AgentExecutionStatus = (typeof AgentExecutionStatus)[keyof typeof AgentExecutionStatus]
+
+
+export const PromiseToPayStatus = {
+  PENDING: 'PENDING',
+  FULFILLED: 'FULFILLED',
+  BROKEN: 'BROKEN',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type PromiseToPayStatus = (typeof PromiseToPayStatus)[keyof typeof PromiseToPayStatus]
+
+
+export const PromiseToPaySource = {
+  VOICE: 'VOICE',
+  SMS: 'SMS',
+  WHATSAPP: 'WHATSAPP',
+  EMAIL: 'EMAIL',
+  MANUAL: 'MANUAL'
+} as const
+
+export type PromiseToPaySource = (typeof PromiseToPaySource)[keyof typeof PromiseToPaySource]
+
+
+export const VoiceCallStatus = {
+  QUEUED: 'QUEUED',
+  RINGING: 'RINGING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+} as const
+
+export type VoiceCallStatus = (typeof VoiceCallStatus)[keyof typeof VoiceCallStatus]
+
+
+export const VoiceCallOutcome = {
+  PROMISE_TO_PAY: 'PROMISE_TO_PAY',
+  PAYMENT_COMPLETED: 'PAYMENT_COMPLETED',
+  DECLINED: 'DECLINED',
+  NO_RESPONSE: 'NO_RESPONSE',
+  CALL_FAILED: 'CALL_FAILED'
+} as const
+
+export type VoiceCallOutcome = (typeof VoiceCallOutcome)[keyof typeof VoiceCallOutcome]

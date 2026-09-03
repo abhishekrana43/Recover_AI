@@ -48,6 +48,7 @@ model Payment {
   merchant          Merchant         @relation(fields: [merchantId], references: [id], onDelete: Cascade)
   attempts          PaymentAttempt[]
   recoveryCases     RecoveryCase[]
+  promiseToPays     PromiseToPay[]
 
   @@index([merchantId])
   @@index([customerId])
@@ -56,16 +57,20 @@ model Payment {
 }
 
 model PaymentAttempt {
-  id            String        @id @default(cuid())
-  paymentId     String
-  attemptNumber Int
-  status        PaymentStatus
-  failureReason String?
-  attemptedAt   DateTime      @default(now())
-  payment       Payment       @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  id                String        @id @default(cuid())
+  paymentId         String
+  attemptNumber     Int
+  status            PaymentStatus
+  failureReason     String?
+  razorpayOrderId   String?
+  razorpayPaymentId String?
+  attemptedAt       DateTime      @default(now())
+  payment           Payment       @relation(fields: [paymentId], references: [id], onDelete: Cascade)
 
   @@unique([paymentId, attemptNumber])
   @@index([paymentId])
+  @@index([razorpayOrderId])
+  @@index([razorpayPaymentId])
 }
 
 model RecoveryCase {
@@ -83,6 +88,8 @@ model RecoveryCase {
 
   agentExecutions AgentExecution[]
   actions         RecoveryAction[]
+  promiseToPays   PromiseToPay[]
+  voiceCalls      VoiceCall[]
   merchant        Merchant         @relation(fields: [merchantId], references: [id], onDelete: Cascade)
   payment         Payment          @relation(fields: [paymentId], references: [id], onDelete: Cascade)
 
@@ -144,6 +151,7 @@ model RecoveryAction {
   executedAt         DateTime?
   createdAt          DateTime           @default(now())
   updatedAt          DateTime           @updatedAt
+  lockedAt           DateTime?
 
   policyDecision PolicyDecision?
   recoveryCase   RecoveryCase    @relation(fields: [recoveryCaseId], references: [id], onDelete: Cascade)
@@ -153,6 +161,7 @@ model RecoveryAction {
   @@index([type])
   @@index([scheduledFor])
   @@index([externalProviderId])
+  @@index([lockedAt])
 }
 
 model PolicyDecision {
@@ -208,6 +217,73 @@ model WebhookEvent {
   @@index([lockedAt])
 }
 
+model PromiseToPay {
+  id             String             @id @default(cuid())
+  recoveryCaseId String
+  paymentId      String
+  amount         Int
+  currency       String
+  promisedFor    DateTime
+  status         PromiseToPayStatus @default(PENDING)
+  source         PromiseToPaySource @default(MANUAL)
+  notes          String?
+  fulfilledAt    DateTime?
+  brokenAt       DateTime?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  recoveryCase RecoveryCase @relation(fields: [recoveryCaseId], references: [id], onDelete: Cascade)
+
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([recoveryCaseId])
+  @@index([paymentId])
+  @@index([status])
+  @@index([promisedFor])
+}
+
+model VoiceCall {
+  id             String            @id @default(cuid())
+  recoveryCaseId String
+  provider       String
+  providerCallId String            @unique
+  status         VoiceCallStatus
+  phoneNumber    String
+  startedAt      DateTime?
+  answeredAt     DateTime?
+  completedAt    DateTime?
+  transcript     String?
+  outcome        VoiceCallOutcome?
+  outcomeData    Json?
+  failureReason  String?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  recoveryCase RecoveryCase @relation(fields: [recoveryCaseId], references: [id], onDelete: Cascade)
+
+  @@index([recoveryCaseId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model VoiceWebhookEvent {
+  id            String   @id @default(cuid())
+  eventId       String   @unique
+  provider      String
+  providerCallId String
+  eventType     String
+  payload       Json?
+  processed     Boolean  @default(false)
+  status        String
+  lastError     String?
+  receivedAt    DateTime @default(now())
+  processedAt   DateTime?
+
+  @@index([providerCallId])
+  @@index([receivedAt])
+  @@index([status])
+}
+
 enum PaymentStatus {
   CREATED
   AUTHORIZED
@@ -231,6 +307,7 @@ enum RecoveryActionType {
   SEND_NOTIFICATION
   WAIT
   ESCALATE
+  VOICE_RECOVERY
 }
 
 enum ActionStatus {
@@ -265,4 +342,35 @@ enum AgentExecutionStatus {
   RUNNING
   COMPLETED
   FAILED
+}
+
+enum PromiseToPayStatus {
+  PENDING
+  FULFILLED
+  BROKEN
+  CANCELLED
+}
+
+enum PromiseToPaySource {
+  VOICE
+  SMS
+  WHATSAPP
+  EMAIL
+  MANUAL
+}
+
+enum VoiceCallStatus {
+  QUEUED
+  RINGING
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+enum VoiceCallOutcome {
+  PROMISE_TO_PAY
+  PAYMENT_COMPLETED
+  DECLINED
+  NO_RESPONSE
+  CALL_FAILED
 }

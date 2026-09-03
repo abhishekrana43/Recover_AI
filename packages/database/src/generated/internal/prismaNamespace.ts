@@ -406,7 +406,10 @@ export const ModelName = {
   RecoveryAction: 'RecoveryAction',
   PolicyDecision: 'PolicyDecision',
   AuditLog: 'AuditLog',
-  WebhookEvent: 'WebhookEvent'
+  WebhookEvent: 'WebhookEvent',
+  PromiseToPay: 'PromiseToPay',
+  VoiceCall: 'VoiceCall',
+  VoiceWebhookEvent: 'VoiceWebhookEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -422,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "merchant" | "customer" | "payment" | "paymentAttempt" | "recoveryCase" | "agentExecution" | "recoveryAction" | "policyDecision" | "auditLog" | "webhookEvent"
+    modelProps: "merchant" | "customer" | "payment" | "paymentAttempt" | "recoveryCase" | "agentExecution" | "recoveryAction" | "policyDecision" | "auditLog" | "webhookEvent" | "promiseToPay" | "voiceCall" | "voiceWebhookEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1166,6 +1169,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PromiseToPay: {
+      payload: Prisma.$PromiseToPayPayload<ExtArgs>
+      fields: Prisma.PromiseToPayFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PromiseToPayFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PromiseToPayFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>
+        }
+        findFirst: {
+          args: Prisma.PromiseToPayFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PromiseToPayFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>
+        }
+        findMany: {
+          args: Prisma.PromiseToPayFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>[]
+        }
+        create: {
+          args: Prisma.PromiseToPayCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>
+        }
+        createMany: {
+          args: Prisma.PromiseToPayCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PromiseToPayCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>[]
+        }
+        delete: {
+          args: Prisma.PromiseToPayDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>
+        }
+        update: {
+          args: Prisma.PromiseToPayUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>
+        }
+        deleteMany: {
+          args: Prisma.PromiseToPayDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PromiseToPayUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PromiseToPayUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>[]
+        }
+        upsert: {
+          args: Prisma.PromiseToPayUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PromiseToPayPayload>
+        }
+        aggregate: {
+          args: Prisma.PromiseToPayAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePromiseToPay>
+        }
+        groupBy: {
+          args: Prisma.PromiseToPayGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PromiseToPayGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PromiseToPayCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PromiseToPayCountAggregateOutputType> | number
+        }
+      }
+    }
+    VoiceCall: {
+      payload: Prisma.$VoiceCallPayload<ExtArgs>
+      fields: Prisma.VoiceCallFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VoiceCallFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VoiceCallFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>
+        }
+        findFirst: {
+          args: Prisma.VoiceCallFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VoiceCallFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>
+        }
+        findMany: {
+          args: Prisma.VoiceCallFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>[]
+        }
+        create: {
+          args: Prisma.VoiceCallCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>
+        }
+        createMany: {
+          args: Prisma.VoiceCallCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VoiceCallCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>[]
+        }
+        delete: {
+          args: Prisma.VoiceCallDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>
+        }
+        update: {
+          args: Prisma.VoiceCallUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>
+        }
+        deleteMany: {
+          args: Prisma.VoiceCallDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VoiceCallUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VoiceCallUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>[]
+        }
+        upsert: {
+          args: Prisma.VoiceCallUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceCallPayload>
+        }
+        aggregate: {
+          args: Prisma.VoiceCallAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVoiceCall>
+        }
+        groupBy: {
+          args: Prisma.VoiceCallGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VoiceCallGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VoiceCallCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VoiceCallCountAggregateOutputType> | number
+        }
+      }
+    }
+    VoiceWebhookEvent: {
+      payload: Prisma.$VoiceWebhookEventPayload<ExtArgs>
+      fields: Prisma.VoiceWebhookEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VoiceWebhookEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VoiceWebhookEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>
+        }
+        findFirst: {
+          args: Prisma.VoiceWebhookEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VoiceWebhookEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>
+        }
+        findMany: {
+          args: Prisma.VoiceWebhookEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>[]
+        }
+        create: {
+          args: Prisma.VoiceWebhookEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>
+        }
+        createMany: {
+          args: Prisma.VoiceWebhookEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VoiceWebhookEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>[]
+        }
+        delete: {
+          args: Prisma.VoiceWebhookEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>
+        }
+        update: {
+          args: Prisma.VoiceWebhookEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.VoiceWebhookEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VoiceWebhookEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VoiceWebhookEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.VoiceWebhookEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoiceWebhookEventPayload>
+        }
+        aggregate: {
+          args: Prisma.VoiceWebhookEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVoiceWebhookEvent>
+        }
+        groupBy: {
+          args: Prisma.VoiceWebhookEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VoiceWebhookEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VoiceWebhookEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VoiceWebhookEventCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1251,6 +1476,8 @@ export const PaymentAttemptScalarFieldEnum = {
   attemptNumber: 'attemptNumber',
   status: 'status',
   failureReason: 'failureReason',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
   attemptedAt: 'attemptedAt'
 } as const
 
@@ -1322,7 +1549,8 @@ export const RecoveryActionScalarFieldEnum = {
   approvalReason: 'approvalReason',
   executedAt: 'executedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  lockedAt: 'lockedAt'
 } as const
 
 export type RecoveryActionScalarFieldEnum = (typeof RecoveryActionScalarFieldEnum)[keyof typeof RecoveryActionScalarFieldEnum]
@@ -1374,6 +1602,63 @@ export const WebhookEventScalarFieldEnum = {
 } as const
 
 export type WebhookEventScalarFieldEnum = (typeof WebhookEventScalarFieldEnum)[keyof typeof WebhookEventScalarFieldEnum]
+
+
+export const PromiseToPayScalarFieldEnum = {
+  id: 'id',
+  recoveryCaseId: 'recoveryCaseId',
+  paymentId: 'paymentId',
+  amount: 'amount',
+  currency: 'currency',
+  promisedFor: 'promisedFor',
+  status: 'status',
+  source: 'source',
+  notes: 'notes',
+  fulfilledAt: 'fulfilledAt',
+  brokenAt: 'brokenAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PromiseToPayScalarFieldEnum = (typeof PromiseToPayScalarFieldEnum)[keyof typeof PromiseToPayScalarFieldEnum]
+
+
+export const VoiceCallScalarFieldEnum = {
+  id: 'id',
+  recoveryCaseId: 'recoveryCaseId',
+  provider: 'provider',
+  providerCallId: 'providerCallId',
+  status: 'status',
+  phoneNumber: 'phoneNumber',
+  startedAt: 'startedAt',
+  answeredAt: 'answeredAt',
+  completedAt: 'completedAt',
+  transcript: 'transcript',
+  outcome: 'outcome',
+  outcomeData: 'outcomeData',
+  failureReason: 'failureReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VoiceCallScalarFieldEnum = (typeof VoiceCallScalarFieldEnum)[keyof typeof VoiceCallScalarFieldEnum]
+
+
+export const VoiceWebhookEventScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  provider: 'provider',
+  providerCallId: 'providerCallId',
+  eventType: 'eventType',
+  payload: 'payload',
+  processed: 'processed',
+  status: 'status',
+  lastError: 'lastError',
+  receivedAt: 'receivedAt',
+  processedAt: 'processedAt'
+} as const
+
+export type VoiceWebhookEventScalarFieldEnum = (typeof VoiceWebhookEventScalarFieldEnum)[keyof typeof VoiceWebhookEventScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1611,6 +1896,62 @@ export type EnumWebhookProcessingStatusFieldRefInput<$PrismaModel> = FieldRefInp
 export type ListEnumWebhookProcessingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WebhookProcessingStatus[]'>
     
 
+
+/**
+ * Reference to a field of type 'PromiseToPayStatus'
+ */
+export type EnumPromiseToPayStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PromiseToPayStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PromiseToPayStatus[]'
+ */
+export type ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PromiseToPayStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PromiseToPaySource'
+ */
+export type EnumPromiseToPaySourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PromiseToPaySource'>
+    
+
+
+/**
+ * Reference to a field of type 'PromiseToPaySource[]'
+ */
+export type ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PromiseToPaySource[]'>
+    
+
+
+/**
+ * Reference to a field of type 'VoiceCallStatus'
+ */
+export type EnumVoiceCallStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoiceCallStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'VoiceCallStatus[]'
+ */
+export type ListEnumVoiceCallStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoiceCallStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'VoiceCallOutcome'
+ */
+export type EnumVoiceCallOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoiceCallOutcome'>
+    
+
+
+/**
+ * Reference to a field of type 'VoiceCallOutcome[]'
+ */
+export type ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoiceCallOutcome[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1772,6 +2113,9 @@ export type GlobalOmitConfig = {
   policyDecision?: Prisma.PolicyDecisionOmit
   auditLog?: Prisma.AuditLogOmit
   webhookEvent?: Prisma.WebhookEventOmit
+  promiseToPay?: Prisma.PromiseToPayOmit
+  voiceCall?: Prisma.VoiceCallOmit
+  voiceWebhookEvent?: Prisma.VoiceWebhookEventOmit
 }
 
 /* Types for Logging */

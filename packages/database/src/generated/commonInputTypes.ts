@@ -433,6 +433,74 @@ export type EnumWebhookProcessingStatusWithAggregatesFilter<$PrismaModel = never
   _max?: Prisma.NestedEnumWebhookProcessingStatusFilter<$PrismaModel>
 }
 
+export type EnumPromiseToPayStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.PromiseToPayStatus | Prisma.EnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PromiseToPayStatus[] | Prisma.ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PromiseToPayStatus[] | Prisma.ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPromiseToPayStatusFilter<$PrismaModel> | $Enums.PromiseToPayStatus
+}
+
+export type EnumPromiseToPaySourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.PromiseToPaySource | Prisma.EnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  in?: $Enums.PromiseToPaySource[] | Prisma.ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PromiseToPaySource[] | Prisma.ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPromiseToPaySourceFilter<$PrismaModel> | $Enums.PromiseToPaySource
+}
+
+export type EnumPromiseToPayStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PromiseToPayStatus | Prisma.EnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PromiseToPayStatus[] | Prisma.ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PromiseToPayStatus[] | Prisma.ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPromiseToPayStatusWithAggregatesFilter<$PrismaModel> | $Enums.PromiseToPayStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPromiseToPayStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPromiseToPayStatusFilter<$PrismaModel>
+}
+
+export type EnumPromiseToPaySourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PromiseToPaySource | Prisma.EnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  in?: $Enums.PromiseToPaySource[] | Prisma.ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PromiseToPaySource[] | Prisma.ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPromiseToPaySourceWithAggregatesFilter<$PrismaModel> | $Enums.PromiseToPaySource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPromiseToPaySourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPromiseToPaySourceFilter<$PrismaModel>
+}
+
+export type EnumVoiceCallStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceCallStatus | Prisma.EnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceCallStatus[] | Prisma.ListEnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceCallStatus[] | Prisma.ListEnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceCallStatusFilter<$PrismaModel> | $Enums.VoiceCallStatus
+}
+
+export type EnumVoiceCallOutcomeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceCallOutcome | Prisma.EnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.VoiceCallOutcome[] | Prisma.ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.VoiceCallOutcome[] | Prisma.ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumVoiceCallOutcomeNullableFilter<$PrismaModel> | $Enums.VoiceCallOutcome | null
+}
+
+export type EnumVoiceCallStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceCallStatus | Prisma.EnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceCallStatus[] | Prisma.ListEnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceCallStatus[] | Prisma.ListEnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceCallStatusWithAggregatesFilter<$PrismaModel> | $Enums.VoiceCallStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoiceCallStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoiceCallStatusFilter<$PrismaModel>
+}
+
+export type EnumVoiceCallOutcomeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceCallOutcome | Prisma.EnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.VoiceCallOutcome[] | Prisma.ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.VoiceCallOutcome[] | Prisma.ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumVoiceCallOutcomeNullableWithAggregatesFilter<$PrismaModel> | $Enums.VoiceCallOutcome | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoiceCallOutcomeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoiceCallOutcomeNullableFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -825,6 +893,74 @@ export type NestedEnumWebhookProcessingStatusWithAggregatesFilter<$PrismaModel =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumWebhookProcessingStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumWebhookProcessingStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumPromiseToPayStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.PromiseToPayStatus | Prisma.EnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PromiseToPayStatus[] | Prisma.ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PromiseToPayStatus[] | Prisma.ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPromiseToPayStatusFilter<$PrismaModel> | $Enums.PromiseToPayStatus
+}
+
+export type NestedEnumPromiseToPaySourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.PromiseToPaySource | Prisma.EnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  in?: $Enums.PromiseToPaySource[] | Prisma.ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PromiseToPaySource[] | Prisma.ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPromiseToPaySourceFilter<$PrismaModel> | $Enums.PromiseToPaySource
+}
+
+export type NestedEnumPromiseToPayStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PromiseToPayStatus | Prisma.EnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PromiseToPayStatus[] | Prisma.ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PromiseToPayStatus[] | Prisma.ListEnumPromiseToPayStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPromiseToPayStatusWithAggregatesFilter<$PrismaModel> | $Enums.PromiseToPayStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPromiseToPayStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPromiseToPayStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumPromiseToPaySourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PromiseToPaySource | Prisma.EnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  in?: $Enums.PromiseToPaySource[] | Prisma.ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PromiseToPaySource[] | Prisma.ListEnumPromiseToPaySourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPromiseToPaySourceWithAggregatesFilter<$PrismaModel> | $Enums.PromiseToPaySource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPromiseToPaySourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPromiseToPaySourceFilter<$PrismaModel>
+}
+
+export type NestedEnumVoiceCallStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceCallStatus | Prisma.EnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceCallStatus[] | Prisma.ListEnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceCallStatus[] | Prisma.ListEnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceCallStatusFilter<$PrismaModel> | $Enums.VoiceCallStatus
+}
+
+export type NestedEnumVoiceCallOutcomeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceCallOutcome | Prisma.EnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.VoiceCallOutcome[] | Prisma.ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.VoiceCallOutcome[] | Prisma.ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumVoiceCallOutcomeNullableFilter<$PrismaModel> | $Enums.VoiceCallOutcome | null
+}
+
+export type NestedEnumVoiceCallStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceCallStatus | Prisma.EnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceCallStatus[] | Prisma.ListEnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceCallStatus[] | Prisma.ListEnumVoiceCallStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceCallStatusWithAggregatesFilter<$PrismaModel> | $Enums.VoiceCallStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoiceCallStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoiceCallStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumVoiceCallOutcomeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceCallOutcome | Prisma.EnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.VoiceCallOutcome[] | Prisma.ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.VoiceCallOutcome[] | Prisma.ListEnumVoiceCallOutcomeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumVoiceCallOutcomeNullableWithAggregatesFilter<$PrismaModel> | $Enums.VoiceCallOutcome | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoiceCallOutcomeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoiceCallOutcomeNullableFilter<$PrismaModel>
 }
 
 

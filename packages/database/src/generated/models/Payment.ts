@@ -260,6 +260,7 @@ export type PaymentWhereInput = {
   merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
   attempts?: Prisma.PaymentAttemptListRelationFilter
   recoveryCases?: Prisma.RecoveryCaseListRelationFilter
+  promiseToPays?: Prisma.PromiseToPayListRelationFilter
 }
 
 export type PaymentOrderByWithRelationInput = {
@@ -277,6 +278,7 @@ export type PaymentOrderByWithRelationInput = {
   merchant?: Prisma.MerchantOrderByWithRelationInput
   attempts?: Prisma.PaymentAttemptOrderByRelationAggregateInput
   recoveryCases?: Prisma.RecoveryCaseOrderByRelationAggregateInput
+  promiseToPays?: Prisma.PromiseToPayOrderByRelationAggregateInput
 }
 
 export type PaymentWhereUniqueInput = Prisma.AtLeast<{
@@ -297,6 +299,7 @@ export type PaymentWhereUniqueInput = Prisma.AtLeast<{
   merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
   attempts?: Prisma.PaymentAttemptListRelationFilter
   recoveryCases?: Prisma.RecoveryCaseListRelationFilter
+  promiseToPays?: Prisma.PromiseToPayListRelationFilter
 }, "id" | "razorpayPaymentId">
 
 export type PaymentOrderByWithAggregationInput = {
@@ -346,6 +349,7 @@ export type PaymentCreateInput = {
   merchant: Prisma.MerchantCreateNestedOneWithoutPaymentsInput
   attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
   recoveryCases?: Prisma.RecoveryCaseCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentUncheckedCreateInput = {
@@ -361,6 +365,7 @@ export type PaymentUncheckedCreateInput = {
   updatedAt?: Date | string
   attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
   recoveryCases?: Prisma.RecoveryCaseUncheckedCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentUpdateInput = {
@@ -376,6 +381,7 @@ export type PaymentUpdateInput = {
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutPaymentsNestedInput
   attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
   recoveryCases?: Prisma.RecoveryCaseUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateInput = {
@@ -391,6 +397,7 @@ export type PaymentUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
   recoveryCases?: Prisma.RecoveryCaseUncheckedUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentCreateManyInput = {
@@ -616,6 +623,20 @@ export type PaymentUpdateOneRequiredWithoutRecoveryCasesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutRecoveryCasesInput, Prisma.PaymentUpdateWithoutRecoveryCasesInput>, Prisma.PaymentUncheckedUpdateWithoutRecoveryCasesInput>
 }
 
+export type PaymentCreateNestedOneWithoutPromiseToPaysInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutPromiseToPaysInput, Prisma.PaymentUncheckedCreateWithoutPromiseToPaysInput>
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutPromiseToPaysInput
+  connect?: Prisma.PaymentWhereUniqueInput
+}
+
+export type PaymentUpdateOneRequiredWithoutPromiseToPaysNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutPromiseToPaysInput, Prisma.PaymentUncheckedCreateWithoutPromiseToPaysInput>
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutPromiseToPaysInput
+  upsert?: Prisma.PaymentUpsertWithoutPromiseToPaysInput
+  connect?: Prisma.PaymentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutPromiseToPaysInput, Prisma.PaymentUpdateWithoutPromiseToPaysInput>, Prisma.PaymentUncheckedUpdateWithoutPromiseToPaysInput>
+}
+
 export type PaymentCreateWithoutMerchantInput = {
   id?: string
   razorpayPaymentId: string
@@ -628,6 +649,7 @@ export type PaymentCreateWithoutMerchantInput = {
   customer?: Prisma.CustomerCreateNestedOneWithoutPaymentsInput
   attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
   recoveryCases?: Prisma.RecoveryCaseCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentUncheckedCreateWithoutMerchantInput = {
@@ -642,6 +664,7 @@ export type PaymentUncheckedCreateWithoutMerchantInput = {
   updatedAt?: Date | string
   attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
   recoveryCases?: Prisma.RecoveryCaseUncheckedCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentCreateOrConnectWithoutMerchantInput = {
@@ -698,6 +721,7 @@ export type PaymentCreateWithoutCustomerInput = {
   merchant: Prisma.MerchantCreateNestedOneWithoutPaymentsInput
   attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
   recoveryCases?: Prisma.RecoveryCaseCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentUncheckedCreateWithoutCustomerInput = {
@@ -712,6 +736,7 @@ export type PaymentUncheckedCreateWithoutCustomerInput = {
   updatedAt?: Date | string
   attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
   recoveryCases?: Prisma.RecoveryCaseUncheckedCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentCreateOrConnectWithoutCustomerInput = {
@@ -752,6 +777,7 @@ export type PaymentCreateWithoutAttemptsInput = {
   customer?: Prisma.CustomerCreateNestedOneWithoutPaymentsInput
   merchant: Prisma.MerchantCreateNestedOneWithoutPaymentsInput
   recoveryCases?: Prisma.RecoveryCaseCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentUncheckedCreateWithoutAttemptsInput = {
@@ -766,6 +792,7 @@ export type PaymentUncheckedCreateWithoutAttemptsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   recoveryCases?: Prisma.RecoveryCaseUncheckedCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentCreateOrConnectWithoutAttemptsInput = {
@@ -796,6 +823,7 @@ export type PaymentUpdateWithoutAttemptsInput = {
   customer?: Prisma.CustomerUpdateOneWithoutPaymentsNestedInput
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutPaymentsNestedInput
   recoveryCases?: Prisma.RecoveryCaseUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateWithoutAttemptsInput = {
@@ -810,6 +838,7 @@ export type PaymentUncheckedUpdateWithoutAttemptsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recoveryCases?: Prisma.RecoveryCaseUncheckedUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentCreateWithoutRecoveryCasesInput = {
@@ -824,6 +853,7 @@ export type PaymentCreateWithoutRecoveryCasesInput = {
   customer?: Prisma.CustomerCreateNestedOneWithoutPaymentsInput
   merchant: Prisma.MerchantCreateNestedOneWithoutPaymentsInput
   attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentUncheckedCreateWithoutRecoveryCasesInput = {
@@ -838,6 +868,7 @@ export type PaymentUncheckedCreateWithoutRecoveryCasesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentCreateOrConnectWithoutRecoveryCasesInput = {
@@ -868,6 +899,7 @@ export type PaymentUpdateWithoutRecoveryCasesInput = {
   customer?: Prisma.CustomerUpdateOneWithoutPaymentsNestedInput
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutPaymentsNestedInput
   attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateWithoutRecoveryCasesInput = {
@@ -882,6 +914,83 @@ export type PaymentUncheckedUpdateWithoutRecoveryCasesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedUpdateManyWithoutPaymentNestedInput
+}
+
+export type PaymentCreateWithoutPromiseToPaysInput = {
+  id?: string
+  razorpayPaymentId: string
+  amount: number
+  currency?: string
+  status: $Enums.PaymentStatus
+  failureReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer?: Prisma.CustomerCreateNestedOneWithoutPaymentsInput
+  merchant: Prisma.MerchantCreateNestedOneWithoutPaymentsInput
+  attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
+  recoveryCases?: Prisma.RecoveryCaseCreateNestedManyWithoutPaymentInput
+}
+
+export type PaymentUncheckedCreateWithoutPromiseToPaysInput = {
+  id?: string
+  merchantId: string
+  customerId?: string | null
+  razorpayPaymentId: string
+  amount: number
+  currency?: string
+  status: $Enums.PaymentStatus
+  failureReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
+  recoveryCases?: Prisma.RecoveryCaseUncheckedCreateNestedManyWithoutPaymentInput
+}
+
+export type PaymentCreateOrConnectWithoutPromiseToPaysInput = {
+  where: Prisma.PaymentWhereUniqueInput
+  create: Prisma.XOR<Prisma.PaymentCreateWithoutPromiseToPaysInput, Prisma.PaymentUncheckedCreateWithoutPromiseToPaysInput>
+}
+
+export type PaymentUpsertWithoutPromiseToPaysInput = {
+  update: Prisma.XOR<Prisma.PaymentUpdateWithoutPromiseToPaysInput, Prisma.PaymentUncheckedUpdateWithoutPromiseToPaysInput>
+  create: Prisma.XOR<Prisma.PaymentCreateWithoutPromiseToPaysInput, Prisma.PaymentUncheckedCreateWithoutPromiseToPaysInput>
+  where?: Prisma.PaymentWhereInput
+}
+
+export type PaymentUpdateToOneWithWhereWithoutPromiseToPaysInput = {
+  where?: Prisma.PaymentWhereInput
+  data: Prisma.XOR<Prisma.PaymentUpdateWithoutPromiseToPaysInput, Prisma.PaymentUncheckedUpdateWithoutPromiseToPaysInput>
+}
+
+export type PaymentUpdateWithoutPromiseToPaysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  razorpayPaymentId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneWithoutPaymentsNestedInput
+  merchant?: Prisma.MerchantUpdateOneRequiredWithoutPaymentsNestedInput
+  attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
+  recoveryCases?: Prisma.RecoveryCaseUpdateManyWithoutPaymentNestedInput
+}
+
+export type PaymentUncheckedUpdateWithoutPromiseToPaysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  merchantId?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
+  recoveryCases?: Prisma.RecoveryCaseUncheckedUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentCreateManyMerchantInput = {
@@ -908,6 +1017,7 @@ export type PaymentUpdateWithoutMerchantInput = {
   customer?: Prisma.CustomerUpdateOneWithoutPaymentsNestedInput
   attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
   recoveryCases?: Prisma.RecoveryCaseUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateWithoutMerchantInput = {
@@ -922,6 +1032,7 @@ export type PaymentUncheckedUpdateWithoutMerchantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
   recoveryCases?: Prisma.RecoveryCaseUncheckedUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateManyWithoutMerchantInput = {
@@ -960,6 +1071,7 @@ export type PaymentUpdateWithoutCustomerInput = {
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutPaymentsNestedInput
   attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
   recoveryCases?: Prisma.RecoveryCaseUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateWithoutCustomerInput = {
@@ -974,6 +1086,7 @@ export type PaymentUncheckedUpdateWithoutCustomerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
   recoveryCases?: Prisma.RecoveryCaseUncheckedUpdateManyWithoutPaymentNestedInput
+  promiseToPays?: Prisma.PromiseToPayUncheckedUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateManyWithoutCustomerInput = {
@@ -996,11 +1109,13 @@ export type PaymentUncheckedUpdateManyWithoutCustomerInput = {
 export type PaymentCountOutputType = {
   attempts: number
   recoveryCases: number
+  promiseToPays: number
 }
 
 export type PaymentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attempts?: boolean | PaymentCountOutputTypeCountAttemptsArgs
   recoveryCases?: boolean | PaymentCountOutputTypeCountRecoveryCasesArgs
+  promiseToPays?: boolean | PaymentCountOutputTypeCountPromiseToPaysArgs
 }
 
 /**
@@ -1027,6 +1142,13 @@ export type PaymentCountOutputTypeCountRecoveryCasesArgs<ExtArgs extends runtime
   where?: Prisma.RecoveryCaseWhereInput
 }
 
+/**
+ * PaymentCountOutputType without action
+ */
+export type PaymentCountOutputTypeCountPromiseToPaysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PromiseToPayWhereInput
+}
+
 
 export type PaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1043,6 +1165,7 @@ export type PaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
   attempts?: boolean | Prisma.Payment$attemptsArgs<ExtArgs>
   recoveryCases?: boolean | Prisma.Payment$recoveryCasesArgs<ExtArgs>
+  promiseToPays?: boolean | Prisma.Payment$promiseToPaysArgs<ExtArgs>
   _count?: boolean | Prisma.PaymentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payment"]>
 
@@ -1095,6 +1218,7 @@ export type PaymentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
   attempts?: boolean | Prisma.Payment$attemptsArgs<ExtArgs>
   recoveryCases?: boolean | Prisma.Payment$recoveryCasesArgs<ExtArgs>
+  promiseToPays?: boolean | Prisma.Payment$promiseToPaysArgs<ExtArgs>
   _count?: boolean | Prisma.PaymentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PaymentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1113,6 +1237,7 @@ export type $PaymentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     merchant: Prisma.$MerchantPayload<ExtArgs>
     attempts: Prisma.$PaymentAttemptPayload<ExtArgs>[]
     recoveryCases: Prisma.$RecoveryCasePayload<ExtArgs>[]
+    promiseToPays: Prisma.$PromiseToPayPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1523,6 +1648,7 @@ export interface Prisma__PaymentClient<T, Null = never, ExtArgs extends runtime.
   merchant<T extends Prisma.MerchantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MerchantDefaultArgs<ExtArgs>>): Prisma.Prisma__MerchantClient<runtime.Types.Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   attempts<T extends Prisma.Payment$attemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$attemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   recoveryCases<T extends Prisma.Payment$recoveryCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$recoveryCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecoveryCasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  promiseToPays<T extends Prisma.Payment$promiseToPaysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$promiseToPaysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PromiseToPayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2027,6 +2153,30 @@ export type Payment$recoveryCasesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.RecoveryCaseScalarFieldEnum | Prisma.RecoveryCaseScalarFieldEnum[]
+}
+
+/**
+ * Payment.promiseToPays
+ */
+export type Payment$promiseToPaysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PromiseToPay
+   */
+  select?: Prisma.PromiseToPaySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PromiseToPay
+   */
+  omit?: Prisma.PromiseToPayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PromiseToPayInclude<ExtArgs> | null
+  where?: Prisma.PromiseToPayWhereInput
+  orderBy?: Prisma.PromiseToPayOrderByWithRelationInput | Prisma.PromiseToPayOrderByWithRelationInput[]
+  cursor?: Prisma.PromiseToPayWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PromiseToPayScalarFieldEnum | Prisma.PromiseToPayScalarFieldEnum[]
 }
 
 /**

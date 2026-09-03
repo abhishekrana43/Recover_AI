@@ -17,3 +17,5 @@ const adapter = new PrismaPg({
 export const prisma = new PrismaClient({
   adapter,
 });
+
+export { Prisma } from "./generated/client.js";

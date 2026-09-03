@@ -67,3 +67,18 @@ export type AuditLog = Prisma.AuditLogModel
  * 
  */
 export type WebhookEvent = Prisma.WebhookEventModel
+/**
+ * Model PromiseToPay
+ * 
+ */
+export type PromiseToPay = Prisma.PromiseToPayModel
+/**
+ * Model VoiceCall
+ * 
+ */
+export type VoiceCall = Prisma.VoiceCallModel
+/**
+ * Model VoiceWebhookEvent
+ * 
+ */
+export type VoiceWebhookEvent = Prisma.VoiceWebhookEventModel

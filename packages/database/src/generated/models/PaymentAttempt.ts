@@ -40,6 +40,8 @@ export type PaymentAttemptMinAggregateOutputType = {
   attemptNumber: number | null
   status: $Enums.PaymentStatus | null
   failureReason: string | null
+  razorpayOrderId: string | null
+  razorpayPaymentId: string | null
   attemptedAt: Date | null
 }
 
@@ -49,6 +51,8 @@ export type PaymentAttemptMaxAggregateOutputType = {
   attemptNumber: number | null
   status: $Enums.PaymentStatus | null
   failureReason: string | null
+  razorpayOrderId: string | null
+  razorpayPaymentId: string | null
   attemptedAt: Date | null
 }
 
@@ -58,6 +62,8 @@ export type PaymentAttemptCountAggregateOutputType = {
   attemptNumber: number
   status: number
   failureReason: number
+  razorpayOrderId: number
+  razorpayPaymentId: number
   attemptedAt: number
   _all: number
 }
@@ -77,6 +83,8 @@ export type PaymentAttemptMinAggregateInputType = {
   attemptNumber?: true
   status?: true
   failureReason?: true
+  razorpayOrderId?: true
+  razorpayPaymentId?: true
   attemptedAt?: true
 }
 
@@ -86,6 +94,8 @@ export type PaymentAttemptMaxAggregateInputType = {
   attemptNumber?: true
   status?: true
   failureReason?: true
+  razorpayOrderId?: true
+  razorpayPaymentId?: true
   attemptedAt?: true
 }
 
@@ -95,6 +105,8 @@ export type PaymentAttemptCountAggregateInputType = {
   attemptNumber?: true
   status?: true
   failureReason?: true
+  razorpayOrderId?: true
+  razorpayPaymentId?: true
   attemptedAt?: true
   _all?: true
 }
@@ -191,6 +203,8 @@ export type PaymentAttemptGroupByOutputType = {
   attemptNumber: number
   status: $Enums.PaymentStatus
   failureReason: string | null
+  razorpayOrderId: string | null
+  razorpayPaymentId: string | null
   attemptedAt: Date
   _count: PaymentAttemptCountAggregateOutputType | null
   _avg: PaymentAttemptAvgAggregateOutputType | null
@@ -223,6 +237,8 @@ export type PaymentAttemptWhereInput = {
   attemptNumber?: Prisma.IntFilter<"PaymentAttempt"> | number
   status?: Prisma.EnumPaymentStatusFilter<"PaymentAttempt"> | $Enums.PaymentStatus
   failureReason?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  razorpayOrderId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  razorpayPaymentId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
   attemptedAt?: Prisma.DateTimeFilter<"PaymentAttempt"> | Date | string
   payment?: Prisma.XOR<Prisma.PaymentScalarRelationFilter, Prisma.PaymentWhereInput>
 }
@@ -233,6 +249,8 @@ export type PaymentAttemptOrderByWithRelationInput = {
   attemptNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   failureReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
   payment?: Prisma.PaymentOrderByWithRelationInput
 }
@@ -247,6 +265,8 @@ export type PaymentAttemptWhereUniqueInput = Prisma.AtLeast<{
   attemptNumber?: Prisma.IntFilter<"PaymentAttempt"> | number
   status?: Prisma.EnumPaymentStatusFilter<"PaymentAttempt"> | $Enums.PaymentStatus
   failureReason?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  razorpayOrderId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  razorpayPaymentId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
   attemptedAt?: Prisma.DateTimeFilter<"PaymentAttempt"> | Date | string
   payment?: Prisma.XOR<Prisma.PaymentScalarRelationFilter, Prisma.PaymentWhereInput>
 }, "id" | "paymentId_attemptNumber">
@@ -257,6 +277,8 @@ export type PaymentAttemptOrderByWithAggregationInput = {
   attemptNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   failureReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
   _count?: Prisma.PaymentAttemptCountOrderByAggregateInput
   _avg?: Prisma.PaymentAttemptAvgOrderByAggregateInput
@@ -274,6 +296,8 @@ export type PaymentAttemptScalarWhereWithAggregatesInput = {
   attemptNumber?: Prisma.IntWithAggregatesFilter<"PaymentAttempt"> | number
   status?: Prisma.EnumPaymentStatusWithAggregatesFilter<"PaymentAttempt"> | $Enums.PaymentStatus
   failureReason?: Prisma.StringNullableWithAggregatesFilter<"PaymentAttempt"> | string | null
+  razorpayOrderId?: Prisma.StringNullableWithAggregatesFilter<"PaymentAttempt"> | string | null
+  razorpayPaymentId?: Prisma.StringNullableWithAggregatesFilter<"PaymentAttempt"> | string | null
   attemptedAt?: Prisma.DateTimeWithAggregatesFilter<"PaymentAttempt"> | Date | string
 }
 
@@ -282,6 +306,8 @@ export type PaymentAttemptCreateInput = {
   attemptNumber: number
   status: $Enums.PaymentStatus
   failureReason?: string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
   attemptedAt?: Date | string
   payment: Prisma.PaymentCreateNestedOneWithoutAttemptsInput
 }
@@ -292,6 +318,8 @@ export type PaymentAttemptUncheckedCreateInput = {
   attemptNumber: number
   status: $Enums.PaymentStatus
   failureReason?: string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
   attemptedAt?: Date | string
 }
 
@@ -300,6 +328,8 @@ export type PaymentAttemptUpdateInput = {
   attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUpdateOneRequiredWithoutAttemptsNestedInput
 }
@@ -310,6 +340,8 @@ export type PaymentAttemptUncheckedUpdateInput = {
   attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -319,6 +351,8 @@ export type PaymentAttemptCreateManyInput = {
   attemptNumber: number
   status: $Enums.PaymentStatus
   failureReason?: string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
   attemptedAt?: Date | string
 }
 
@@ -327,6 +361,8 @@ export type PaymentAttemptUpdateManyMutationInput = {
   attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -336,6 +372,8 @@ export type PaymentAttemptUncheckedUpdateManyInput = {
   attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -360,6 +398,8 @@ export type PaymentAttemptCountOrderByAggregateInput = {
   attemptNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   failureReason?: Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
 }
 
@@ -373,6 +413,8 @@ export type PaymentAttemptMaxOrderByAggregateInput = {
   attemptNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   failureReason?: Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
 }
 
@@ -382,6 +424,8 @@ export type PaymentAttemptMinOrderByAggregateInput = {
   attemptNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   failureReason?: Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
 }
 
@@ -436,6 +480,8 @@ export type PaymentAttemptCreateWithoutPaymentInput = {
   attemptNumber: number
   status: $Enums.PaymentStatus
   failureReason?: string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
   attemptedAt?: Date | string
 }
 
@@ -444,6 +490,8 @@ export type PaymentAttemptUncheckedCreateWithoutPaymentInput = {
   attemptNumber: number
   status: $Enums.PaymentStatus
   failureReason?: string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
   attemptedAt?: Date | string
 }
 
@@ -482,6 +530,8 @@ export type PaymentAttemptScalarWhereInput = {
   attemptNumber?: Prisma.IntFilter<"PaymentAttempt"> | number
   status?: Prisma.EnumPaymentStatusFilter<"PaymentAttempt"> | $Enums.PaymentStatus
   failureReason?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  razorpayOrderId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  razorpayPaymentId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
   attemptedAt?: Prisma.DateTimeFilter<"PaymentAttempt"> | Date | string
 }
 
@@ -490,6 +540,8 @@ export type PaymentAttemptCreateManyPaymentInput = {
   attemptNumber: number
   status: $Enums.PaymentStatus
   failureReason?: string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
   attemptedAt?: Date | string
 }
 
@@ -498,6 +550,8 @@ export type PaymentAttemptUpdateWithoutPaymentInput = {
   attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -506,6 +560,8 @@ export type PaymentAttemptUncheckedUpdateWithoutPaymentInput = {
   attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -514,6 +570,8 @@ export type PaymentAttemptUncheckedUpdateManyWithoutPaymentInput = {
   attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -525,6 +583,8 @@ export type PaymentAttemptSelect<ExtArgs extends runtime.Types.Extensions.Intern
   attemptNumber?: boolean
   status?: boolean
   failureReason?: boolean
+  razorpayOrderId?: boolean
+  razorpayPaymentId?: boolean
   attemptedAt?: boolean
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paymentAttempt"]>
@@ -535,6 +595,8 @@ export type PaymentAttemptSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   attemptNumber?: boolean
   status?: boolean
   failureReason?: boolean
+  razorpayOrderId?: boolean
+  razorpayPaymentId?: boolean
   attemptedAt?: boolean
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paymentAttempt"]>
@@ -545,6 +607,8 @@ export type PaymentAttemptSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   attemptNumber?: boolean
   status?: boolean
   failureReason?: boolean
+  razorpayOrderId?: boolean
+  razorpayPaymentId?: boolean
   attemptedAt?: boolean
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paymentAttempt"]>
@@ -555,10 +619,12 @@ export type PaymentAttemptSelectScalar = {
   attemptNumber?: boolean
   status?: boolean
   failureReason?: boolean
+  razorpayOrderId?: boolean
+  razorpayPaymentId?: boolean
   attemptedAt?: boolean
 }
 
-export type PaymentAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "paymentId" | "attemptNumber" | "status" | "failureReason" | "attemptedAt", ExtArgs["result"]["paymentAttempt"]>
+export type PaymentAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "paymentId" | "attemptNumber" | "status" | "failureReason" | "razorpayOrderId" | "razorpayPaymentId" | "attemptedAt", ExtArgs["result"]["paymentAttempt"]>
 export type PaymentAttemptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
 }
@@ -580,6 +646,8 @@ export type $PaymentAttemptPayload<ExtArgs extends runtime.Types.Extensions.Inte
     attemptNumber: number
     status: $Enums.PaymentStatus
     failureReason: string | null
+    razorpayOrderId: string | null
+    razorpayPaymentId: string | null
     attemptedAt: Date
   }, ExtArgs["result"]["paymentAttempt"]>
   composites: {}
@@ -1010,6 +1078,8 @@ export interface PaymentAttemptFieldRefs {
   readonly attemptNumber: Prisma.FieldRef<"PaymentAttempt", 'Int'>
   readonly status: Prisma.FieldRef<"PaymentAttempt", 'PaymentStatus'>
   readonly failureReason: Prisma.FieldRef<"PaymentAttempt", 'String'>
+  readonly razorpayOrderId: Prisma.FieldRef<"PaymentAttempt", 'String'>
+  readonly razorpayPaymentId: Prisma.FieldRef<"PaymentAttempt", 'String'>
   readonly attemptedAt: Prisma.FieldRef<"PaymentAttempt", 'DateTime'>
 }
     

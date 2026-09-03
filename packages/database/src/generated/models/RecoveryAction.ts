@@ -53,6 +53,7 @@ export type RecoveryActionMinAggregateOutputType = {
   executedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  lockedAt: Date | null
 }
 
 export type RecoveryActionMaxAggregateOutputType = {
@@ -74,6 +75,7 @@ export type RecoveryActionMaxAggregateOutputType = {
   executedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  lockedAt: Date | null
 }
 
 export type RecoveryActionCountAggregateOutputType = {
@@ -97,6 +99,7 @@ export type RecoveryActionCountAggregateOutputType = {
   executedAt: number
   createdAt: number
   updatedAt: number
+  lockedAt: number
   _all: number
 }
 
@@ -128,6 +131,7 @@ export type RecoveryActionMinAggregateInputType = {
   executedAt?: true
   createdAt?: true
   updatedAt?: true
+  lockedAt?: true
 }
 
 export type RecoveryActionMaxAggregateInputType = {
@@ -149,6 +153,7 @@ export type RecoveryActionMaxAggregateInputType = {
   executedAt?: true
   createdAt?: true
   updatedAt?: true
+  lockedAt?: true
 }
 
 export type RecoveryActionCountAggregateInputType = {
@@ -172,6 +177,7 @@ export type RecoveryActionCountAggregateInputType = {
   executedAt?: true
   createdAt?: true
   updatedAt?: true
+  lockedAt?: true
   _all?: true
 }
 
@@ -282,6 +288,7 @@ export type RecoveryActionGroupByOutputType = {
   executedAt: Date | null
   createdAt: Date
   updatedAt: Date
+  lockedAt: Date | null
   _count: RecoveryActionCountAggregateOutputType | null
   _avg: RecoveryActionAvgAggregateOutputType | null
   _sum: RecoveryActionSumAggregateOutputType | null
@@ -328,6 +335,7 @@ export type RecoveryActionWhereInput = {
   executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
+  lockedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
   policyDecision?: Prisma.XOR<Prisma.PolicyDecisionNullableScalarRelationFilter, Prisma.PolicyDecisionWhereInput> | null
   recoveryCase?: Prisma.XOR<Prisma.RecoveryCaseScalarRelationFilter, Prisma.RecoveryCaseWhereInput>
 }
@@ -353,6 +361,7 @@ export type RecoveryActionOrderByWithRelationInput = {
   executedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   policyDecision?: Prisma.PolicyDecisionOrderByWithRelationInput
   recoveryCase?: Prisma.RecoveryCaseOrderByWithRelationInput
 }
@@ -381,6 +390,7 @@ export type RecoveryActionWhereUniqueInput = Prisma.AtLeast<{
   executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
+  lockedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
   policyDecision?: Prisma.XOR<Prisma.PolicyDecisionNullableScalarRelationFilter, Prisma.PolicyDecisionWhereInput> | null
   recoveryCase?: Prisma.XOR<Prisma.RecoveryCaseScalarRelationFilter, Prisma.RecoveryCaseWhereInput>
 }, "id" | "idempotencyKey">
@@ -406,6 +416,7 @@ export type RecoveryActionOrderByWithAggregationInput = {
   executedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RecoveryActionCountOrderByAggregateInput
   _avg?: Prisma.RecoveryActionAvgOrderByAggregateInput
   _max?: Prisma.RecoveryActionMaxOrderByAggregateInput
@@ -437,6 +448,7 @@ export type RecoveryActionScalarWhereWithAggregatesInput = {
   executedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"RecoveryAction"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RecoveryAction"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RecoveryAction"> | Date | string
+  lockedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"RecoveryAction"> | Date | string | null
 }
 
 export type RecoveryActionCreateInput = {
@@ -459,6 +471,7 @@ export type RecoveryActionCreateInput = {
   executedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lockedAt?: Date | string | null
   policyDecision?: Prisma.PolicyDecisionCreateNestedOneWithoutRecoveryActionInput
   recoveryCase: Prisma.RecoveryCaseCreateNestedOneWithoutActionsInput
 }
@@ -484,6 +497,7 @@ export type RecoveryActionUncheckedCreateInput = {
   executedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lockedAt?: Date | string | null
   policyDecision?: Prisma.PolicyDecisionUncheckedCreateNestedOneWithoutRecoveryActionInput
 }
 
@@ -507,6 +521,7 @@ export type RecoveryActionUpdateInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   policyDecision?: Prisma.PolicyDecisionUpdateOneWithoutRecoveryActionNestedInput
   recoveryCase?: Prisma.RecoveryCaseUpdateOneRequiredWithoutActionsNestedInput
 }
@@ -532,6 +547,7 @@ export type RecoveryActionUncheckedUpdateInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   policyDecision?: Prisma.PolicyDecisionUncheckedUpdateOneWithoutRecoveryActionNestedInput
 }
 
@@ -556,6 +572,7 @@ export type RecoveryActionCreateManyInput = {
   executedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lockedAt?: Date | string | null
 }
 
 export type RecoveryActionUpdateManyMutationInput = {
@@ -578,6 +595,7 @@ export type RecoveryActionUpdateManyMutationInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RecoveryActionUncheckedUpdateManyInput = {
@@ -601,6 +619,7 @@ export type RecoveryActionUncheckedUpdateManyInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RecoveryActionListRelationFilter = {
@@ -634,6 +653,7 @@ export type RecoveryActionCountOrderByAggregateInput = {
   executedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrder
 }
 
 export type RecoveryActionAvgOrderByAggregateInput = {
@@ -659,6 +679,7 @@ export type RecoveryActionMaxOrderByAggregateInput = {
   executedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrder
 }
 
 export type RecoveryActionMinOrderByAggregateInput = {
@@ -680,6 +701,7 @@ export type RecoveryActionMinOrderByAggregateInput = {
   executedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrder
 }
 
 export type RecoveryActionSumOrderByAggregateInput = {
@@ -779,6 +801,7 @@ export type RecoveryActionCreateWithoutRecoveryCaseInput = {
   executedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lockedAt?: Date | string | null
   policyDecision?: Prisma.PolicyDecisionCreateNestedOneWithoutRecoveryActionInput
 }
 
@@ -802,6 +825,7 @@ export type RecoveryActionUncheckedCreateWithoutRecoveryCaseInput = {
   executedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lockedAt?: Date | string | null
   policyDecision?: Prisma.PolicyDecisionUncheckedCreateNestedOneWithoutRecoveryActionInput
 }
 
@@ -855,6 +879,7 @@ export type RecoveryActionScalarWhereInput = {
   executedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RecoveryAction"> | Date | string
+  lockedAt?: Prisma.DateTimeNullableFilter<"RecoveryAction"> | Date | string | null
 }
 
 export type RecoveryActionCreateWithoutPolicyDecisionInput = {
@@ -877,6 +902,7 @@ export type RecoveryActionCreateWithoutPolicyDecisionInput = {
   executedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lockedAt?: Date | string | null
   recoveryCase: Prisma.RecoveryCaseCreateNestedOneWithoutActionsInput
 }
 
@@ -901,6 +927,7 @@ export type RecoveryActionUncheckedCreateWithoutPolicyDecisionInput = {
   executedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lockedAt?: Date | string | null
 }
 
 export type RecoveryActionCreateOrConnectWithoutPolicyDecisionInput = {
@@ -939,6 +966,7 @@ export type RecoveryActionUpdateWithoutPolicyDecisionInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recoveryCase?: Prisma.RecoveryCaseUpdateOneRequiredWithoutActionsNestedInput
 }
 
@@ -963,6 +991,7 @@ export type RecoveryActionUncheckedUpdateWithoutPolicyDecisionInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RecoveryActionCreateManyRecoveryCaseInput = {
@@ -985,6 +1014,7 @@ export type RecoveryActionCreateManyRecoveryCaseInput = {
   executedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  lockedAt?: Date | string | null
 }
 
 export type RecoveryActionUpdateWithoutRecoveryCaseInput = {
@@ -1007,6 +1037,7 @@ export type RecoveryActionUpdateWithoutRecoveryCaseInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   policyDecision?: Prisma.PolicyDecisionUpdateOneWithoutRecoveryActionNestedInput
 }
 
@@ -1030,6 +1061,7 @@ export type RecoveryActionUncheckedUpdateWithoutRecoveryCaseInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   policyDecision?: Prisma.PolicyDecisionUncheckedUpdateOneWithoutRecoveryActionNestedInput
 }
 
@@ -1053,6 +1085,7 @@ export type RecoveryActionUncheckedUpdateManyWithoutRecoveryCaseInput = {
   executedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1078,6 +1111,7 @@ export type RecoveryActionSelect<ExtArgs extends runtime.Types.Extensions.Intern
   executedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  lockedAt?: boolean
   policyDecision?: boolean | Prisma.RecoveryAction$policyDecisionArgs<ExtArgs>
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recoveryAction"]>
@@ -1103,6 +1137,7 @@ export type RecoveryActionSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   executedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  lockedAt?: boolean
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recoveryAction"]>
 
@@ -1127,6 +1162,7 @@ export type RecoveryActionSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   executedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  lockedAt?: boolean
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recoveryAction"]>
 
@@ -1151,9 +1187,10 @@ export type RecoveryActionSelectScalar = {
   executedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  lockedAt?: boolean
 }
 
-export type RecoveryActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "recoveryCaseId" | "type" | "status" | "payload" | "result" | "error" | "retryCount" | "externalProviderId" | "idempotencyKey" | "scheduledFor" | "approvalRequired" | "approvedAt" | "approvedBy" | "rejectedAt" | "rejectedBy" | "approvalReason" | "executedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["recoveryAction"]>
+export type RecoveryActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "recoveryCaseId" | "type" | "status" | "payload" | "result" | "error" | "retryCount" | "externalProviderId" | "idempotencyKey" | "scheduledFor" | "approvalRequired" | "approvedAt" | "approvedBy" | "rejectedAt" | "rejectedBy" | "approvalReason" | "executedAt" | "createdAt" | "updatedAt" | "lockedAt", ExtArgs["result"]["recoveryAction"]>
 export type RecoveryActionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   policyDecision?: boolean | Prisma.RecoveryAction$policyDecisionArgs<ExtArgs>
   recoveryCase?: boolean | Prisma.RecoveryCaseDefaultArgs<ExtArgs>
@@ -1192,6 +1229,7 @@ export type $RecoveryActionPayload<ExtArgs extends runtime.Types.Extensions.Inte
     executedAt: Date | null
     createdAt: Date
     updatedAt: Date
+    lockedAt: Date | null
   }, ExtArgs["result"]["recoveryAction"]>
   composites: {}
 }
@@ -1637,6 +1675,7 @@ export interface RecoveryActionFieldRefs {
   readonly executedAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
+  readonly lockedAt: Prisma.FieldRef<"RecoveryAction", 'DateTime'>
 }
     
 
